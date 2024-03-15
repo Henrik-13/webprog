@@ -5,9 +5,14 @@ bhim2208
 
 body {
     background-color:antiquewhite;
+    background-image: url("porsche-model.png");
+    background-attachment: scroll;
+    background-repeat: repeat-x;
+    background-size: 50%;
 }
 
-img {
-    width: 50%;
-    height: 50%;
+p, em {
+    font-size: larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: crimson;
 }
