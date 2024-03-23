@@ -5,14 +5,71 @@ bhim2208
 
 body {
     background-color:antiquewhite;
-    background-image: url("porsche-model.png");
+    background-image: url("car-vehicle-porsche-simple-background-porsche-911-gt3-rs-hd-wallpaper-preview.jpg");
     background-attachment: scroll;
     background-repeat: repeat-x;
     background-size: 50%;
 }
 
 p, em {
-    font-size: larger;
+    font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: crimson;
+    color:black;
+    background-color: aliceblue;
+}
+
+#main
+{
+    display: flex;
+    min-height: 800px;
+}
+
+#main > nav
+{
+    float: left;
+    /* background-color: aqua; */
+}
+
+#main > article
+{
+    float: left;
+}
+
+header, footer
+{
+    display: block;
+    min-height: 20px;
+    font-size: larger;
+    padding: 30px;
+    background-color:bisque;
+}
+
+h1.headercim
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: navy;
+    font-weight: bolder;
+}
+
+h1.cim
+{
+    font-family: 'Courier New', Courier, monospace;
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.subtitle
+{
+    color:darkslategrey;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+    font-weight: bold;
+    font-style: normal;
+    text-align: left;
+}
+
+nav a
+{
+    font-style: normal;
+    color: brown;
 }
