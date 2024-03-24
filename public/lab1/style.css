@@ -36,10 +36,6 @@ p, em {
     float: left;
 }
 
-/* article > p
-{
-    margin-top: 250px;  
-} */
 
 h2 + p
 {
@@ -143,7 +139,12 @@ nav a:active
     color: darkslategrey;
 }
 
-#images img
+#images1 img
+{
+    width: 45%;
+}
+
+#images2 img
 {
     /* size: 50%; */
     /* width: 100px; */
