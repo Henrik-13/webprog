@@ -144,11 +144,11 @@ nav a:active
     width: 45%;
 }
 
-#images2 img
+
+#img1, #img2
 {
-    /* size: 50%; */
-    /* width: 100px; */
-    margin: 30px;
+    padding: 30px;
+    width: 500px;
 }
 
 #details
@@ -160,11 +160,6 @@ nav a:active
     border-style: dashed;
     font-size: x-large;
 }
-
-
-/* {
-    padding-left: 400px;
-} */
 
 table
 {
@@ -211,7 +206,6 @@ th, td:first-child
 .stairs
 {
     height: 80px;
-    /* width: 200px; */
     text-align: center;
     padding-top: 50px;
     color:white;
