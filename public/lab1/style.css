@@ -8,7 +8,7 @@ body {
     background-image: url("car-vehicle-porsche-simple-background-porsche-911-gt3-rs-hd-wallpaper-preview.jpg");
     background-attachment: scroll;
     background-repeat: repeat-x;
-    background-size: 50%;
+    background-size: 60%;
 }
 
 p, em {
@@ -20,19 +20,33 @@ p, em {
 
 #main
 {
-    display: flex;
     min-height: 800px;
+    display: -webkit-flex;
+    display: flex;
 }
 
 #main > nav
 {
     float: left;
-    /* background-color: aqua; */
+    background-color:beige;
 }
 
 #main > article
 {
     float: left;
+}
+
+/* article > p
+{
+    margin-top: 250px;  
+} */
+
+h2 + p
+{
+    text-align: center;
+    margin-top: 250px;
+    font-size: 22px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 header, footer
@@ -62,7 +76,7 @@ h1.cim
 {
     color:darkslategrey;
     font-family: 'Times New Roman', Times, serif;
-    font-size: larger;
+    font-size:x-large;
     font-weight: bold;
     font-style: normal;
     text-align: left;
@@ -71,5 +85,117 @@ h1.cim
 nav a
 {
     font-style: normal;
-    color: brown;
+    font-size:x-large;
+    text-decoration: none;
+}
+
+nav a:link
+{   
+    color: orange;
+}
+
+nav a:visited
+{   
+    color:darkblue;
+}
+
+nav a:hover
+{   
+    color:chocolate;
+    text-decoration: underline;
+}
+
+nav a:active
+{   
+    color: blue;
+}
+
+#buynow
+{
+    float: right;
+}
+
+#linkek a
+{
+    background-color: azure;
+    font-size: 30px;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+#linkek a:link
+{
+    color: darkblue;
+}
+
+#linkek a:visited
+{
+    color:darkcyan;
+}
+
+#linkek a:hover
+{
+    color:darkgreen;
+}
+
+#linkek a:active
+{
+    color: darkslategrey;
+}
+
+#images img
+{
+    /* size: 50%; */
+    /* width: 100px; */
+    margin: 30px;
+}
+
+#details
+{
+    padding: 20px;
+    text-align: center;
+    background-color: aliceblue;
+    border-style: dashed;
+    font-size: x-large;
+}
+
+#artd
+{
+    padding-left: 400px;
+}
+
+table
+{
+    border: 1px solid black;
+    width:70lvw;
+}
+
+tr, th, td
+{
+    padding: 10px;
+}
+
+th
+{
+    background-color: green;
+    color: white;
+    text-align: left;
+}
+
+td
+{
+    background-color: white;
+    text-align: left;
+}
+
+th, td:first-child
+{
+    text-align: center;
+}
+
+
+
+@media all and (max-width: 600px)
+{
+
 }
