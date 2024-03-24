@@ -152,6 +152,7 @@ nav a:active
 
 #details
 {
+    margin-left: 400px;
     padding: 20px;
     text-align: center;
     background-color: aliceblue;
@@ -159,13 +160,14 @@ nav a:active
     font-size: x-large;
 }
 
-#artd
-{
+
+/* {
     padding-left: 400px;
-}
+} */
 
 table
 {
+    margin: 50px;
     border: 1px solid black;
     width:70lvw;
 }
@@ -193,9 +195,62 @@ th, td:first-child
     text-align: center;
 }
 
+#images
+{
+    margin: 100px;
+    padding-left: 150px;
+}
 
+#img2
+{
+    float: right;
+}
+
+
+.stairs
+{
+    height: 80px;
+    /* width: 200px; */
+    text-align: center;
+    padding-top: 50px;
+    color:white;
+}
+
+
+#stair1
+{
+    background-color: gold;
+    width: 150px;
+}
+
+#stair2
+{
+    background-color: silver;
+    width: 200px;
+}
+
+#stair3
+{
+    background-color: brown;
+    width: 250px;
+}
+
+#stair4
+{
+    background-color: red;
+    width: 300px;
+}
+
+#stair5
+{
+    background-color: blue;
+    width: 350px;
+}
 
 @media all and (max-width: 600px)
 {
-
+    #stair1, #stair2, #stair3, #stair4, #stair5
+    {
+        width: 100%;
+    }
 }
