@@ -1,0 +1,251 @@
+/* Bálint Henrik 
+521/1
+bhim2208
+*/
+
+body {
+    background-color:antiquewhite;
+    background-image: url("car-vehicle-porsche-simple-background-porsche-911-gt3-rs-hd-wallpaper-preview.jpg");
+    background-attachment: scroll;
+    background-repeat: repeat-x;
+    background-size: 60%;
+}
+
+p, em {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:black;
+    background-color: aliceblue;
+}
+
+#main
+{
+    min-height: 800px;
+    display: -webkit-flex;
+    display: flex;
+}
+
+#main > nav
+{
+    float: left;
+    background-color:beige;
+}
+
+#main > article
+{
+    float: left;
+}
+
+
+h2 + p
+{
+    text-align: center;
+    margin-top: 250px;
+    font-size: 22px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+header, footer
+{
+    display: block;
+    min-height: 20px;
+    font-size: larger;
+    padding: 30px;
+    background-color:bisque;
+}
+
+h1.headercim
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: navy;
+    font-weight: bolder;
+}
+
+h1.cim
+{
+    font-family: 'Courier New', Courier, monospace;
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.subtitle
+{
+    color:darkslategrey;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:x-large;
+    font-weight: bold;
+    font-style: normal;
+    text-align: left;
+}
+
+nav a
+{
+    font-style: normal;
+    font-size:x-large;
+    text-decoration: none;
+}
+
+nav a:link
+{   
+    color: orange;
+}
+
+nav a:visited
+{   
+    color:darkblue;
+}
+
+nav a:hover
+{   
+    color:chocolate;
+    text-decoration: underline;
+}
+
+nav a:active
+{   
+    color: blue;
+}
+
+#buynow
+{
+    float: right;
+}
+
+#linkek a
+{
+    background-color: azure;
+    font-size: 30px;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+#linkek a:link
+{
+    color: darkblue;
+}
+
+#linkek a:visited
+{
+    color:darkcyan;
+}
+
+#linkek a:hover
+{
+    color:darkgreen;
+}
+
+#linkek a:active
+{
+    color: darkslategrey;
+}
+
+#images1 img
+{
+    width: 45%;
+}
+
+
+#img1, #img2
+{
+    padding: 30px;
+    width: 500px;
+}
+
+#details
+{
+    margin-left: 400px;
+    padding: 20px;
+    text-align: center;
+    background-color: aliceblue;
+    border-style: dashed;
+    font-size: x-large;
+}
+
+table
+{
+    margin: 50px;
+    border: 1px solid black;
+    width:70lvw;
+}
+
+tr, th, td
+{
+    padding: 10px;
+}
+
+th
+{
+    background-color: green;
+    color: white;
+    text-align: left;
+}
+
+td
+{
+    background-color: white;
+    text-align: left;
+}
+
+th, td:first-child
+{
+    text-align: center;
+}
+
+#images
+{
+    margin: 100px;
+    padding-left: 150px;
+}
+
+#img2
+{
+    float: right;
+}
+
+
+.stairs
+{
+    height: 80px;
+    text-align: center;
+    padding-top: 50px;
+    color:white;
+}
+
+
+#stair1
+{
+    background-color: gold;
+    width: 150px;
+}
+
+#stair2
+{
+    background-color: silver;
+    width: 200px;
+}
+
+#stair3
+{
+    background-color: brown;
+    width: 250px;
+}
+
+#stair4
+{
+    background-color: red;
+    width: 300px;
+}
+
+#stair5
+{
+    background-color: blue;
+    width: 350px;
+}
+
+@media all and (max-width: 600px)
+{
+    #stair1, #stair2, #stair3, #stair4, #stair5
+    {
+        width: 100%;
+    }
+}
