@@ -4,11 +4,41 @@ let currency;
 let currentMoney;
 
 function getWin() {
-
+  switch (currency) {
+    case 'ron':
+      return 50;
+    case 'usd':
+      return 12;
+    case 'eur':
+      return 11;
+    case 'chf':
+      return 9;
+    case 'huf':
+      return 1000;
+    case 'gbp':
+      return 10;
+    default:
+      return 0;
+  }
 }
 
 function getLoss() {
-    
+  switch (currency) {
+    case 'ron':
+      return 100;
+    case 'usd':
+      return 24;
+    case 'eur':
+      return 22;
+    case 'chf':
+      return 18;
+    case 'huf':
+      return 2000;
+    case 'gbp':
+      return 20;
+    default:
+      return 0;
+  }
 }
 
 function revealImage(event) {
@@ -20,6 +50,15 @@ function revealImage(event) {
     redImg.src = 'red.png';
     const blackImg = document.getElementsByClassName('black-picture')[num - 1];
     document.getElementById('pictures').replaceChild(redImg, blackImg);
+    currentMoney += getWin();
+    document.getElementById('player-money').innerText = currentMoney;
+  } else {
+    const blueImg = document.createElement('img');
+    blueImg.src = 'blue.png';
+    const blackImg = document.getElementsByClassName('black-picture')[num - 1];
+    document.getElementById('pictures').replaceChild(blueImg, blackImg);
+    currentMoney -= getLoss();
+    document.getElementById('player-money').innerText = currentMoney;
   }
 }
 
