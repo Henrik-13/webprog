@@ -18,3 +18,42 @@ input
 {
     display: none;
 }
+
+#pictures
+{
+    display: none;
+}
+
+#buttons
+{
+    display: none;
+}
+
+.guess-buttons
+{
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 20px;
+    margin: 10px;
+}
+
+#btn1
+{
+    margin-left: 125px;
+}
+
+#btn2
+{
+    margin-left: 225px;
+}
+
+#btn3
+{
+    margin-left: 250px;
+}
+
+img
+{
+    width: 300px;
+    height: 300px;
+}
