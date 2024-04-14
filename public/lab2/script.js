@@ -41,24 +41,44 @@ function getLoss() {
   }
 }
 
+function endButton() {
+  alert(`Koszonom a jatekot!\nMegmaradt penzosszeg:${currentMoney}${currency}`);
+  document.getElementById('player').style.display = 'none';
+  document.getElementById('pictures').style.display = 'none';
+  document.getElementById('buttons').style.display = 'none';
+  document.getElementById('end').style.display = 'none';
+  document.getElementById('game-data').style.display = 'block';
+}
+
 function revealImage(event) {
   const red = Math.floor(Math.random() * 3) + 1;
   const btn = event.target;
   const num = parseInt(btn.innerText, 10);
+  let img;
+  const blackImg = document.getElementsByClassName('black-picture')[num - 1];
   if (num === red) {
-    const redImg = document.createElement('img');
-    redImg.src = 'red.png';
-    const blackImg = document.getElementsByClassName('black-picture')[num - 1];
-    document.getElementById('pictures').replaceChild(redImg, blackImg);
+    img = document.createElement('img');
+    img.src = 'red.png';
+    document.getElementById('pictures').replaceChild(img, blackImg);
     currentMoney += getWin();
     document.getElementById('player-money').innerText = currentMoney;
+    setTimeout(() => {
+      alert(`Nyertel! +${getWin()}${currency}`);
+      document.getElementById('pictures').replaceChild(blackImg, img);
+    }, 1000);
   } else {
-    const blueImg = document.createElement('img');
-    blueImg.src = 'blue.png';
-    const blackImg = document.getElementsByClassName('black-picture')[num - 1];
-    document.getElementById('pictures').replaceChild(blueImg, blackImg);
+    img = document.createElement('img');
+    img.src = 'blue.png';
+    document.getElementById('pictures').replaceChild(img, blackImg);
     currentMoney -= getLoss();
     document.getElementById('player-money').innerText = currentMoney;
+    setTimeout(() => {
+      alert(`Vesztettel! -${getLoss()}${currency}`);
+      document.getElementById('pictures').replaceChild(blackImg, img);
+    }, 1000);
+  }
+  if (currentMoney < getLoss()) {
+    endButton();
   }
 }
 
@@ -68,18 +88,15 @@ function showPlayerInfo() {
 }
 
 function startButton() {
-  console.log('Start pressed');
   nickname = document.getElementById('name').value;
   money = parseInt(document.getElementById('money').value, 10);
   currency = document.getElementById('currencies').value;
-  //   console.log(nickname);
-  //   console.log(money);
-  //   console.log(currency);
   currentMoney = money;
 
   document.getElementById('player').style.display = 'block';
   document.getElementById('pictures').style.display = 'block';
   document.getElementById('buttons').style.display = 'block';
+  document.getElementById('end').style.display = 'block';
   document.getElementById('game-data').style.display = 'none';
   showPlayerInfo();
 }
@@ -89,4 +106,5 @@ window.onload = () => {
   Array.from(document.getElementsByClassName('guess-buttons')).forEach((elem) => {
     elem.addEventListener('click', revealImage);
   });
+  document.getElementById('end').addEventListener('click', endButton);
 };

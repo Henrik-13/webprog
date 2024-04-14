@@ -29,6 +29,11 @@ input
     display: none;
 }
 
+#end
+{
+    display: none;
+}
+
 .guess-buttons
 {
     padding: 15px 20px;
