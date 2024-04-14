@@ -1,19 +1,22 @@
+<!-- Bálint Henrik -->
+<!-- 521/1 -->
+<!-- bhim2208 -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lab 2</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    <script src='script.js'></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
     <h1>Itt a piros, hol a piros</h1>
     <div id="game-data">
-        <form action="" method="get" target="_blank" id="form1">
+        <form>
             Nev: <input type="text" name="name" id="name">
             <br>
             Osszeg: <input type="text" name="money" id="money">
@@ -26,8 +29,8 @@
                 <option value="huf">HUF</option>
                 <option value="gbp">GBP</option>
             </select>
+            <input type="submit" value="Start" id="start">
         </form>
-        <button id="start">Start</button>
     </div>
 
     <div id="player">
@@ -45,12 +48,12 @@
     </div>
 
     <div id="buttons">
-        <button id="btn1" class="guess-buttons">1</button>
-        <button id="btn2" class="guess-buttons">2</button>
-        <button id="btn3" class="guess-buttons">3</button>
+        <button type="button" id="btn1" class="guess-buttons">1</button>
+        <button type="button" id="btn2" class="guess-buttons">2</button>
+        <button type="button" id="btn3" class="guess-buttons">3</button>
     </div>
     <div id="end">
-        <button id="end-btn">Meguntam</button>
+        <button type="button" id="end-btn">Meguntam</button>
     </div>
 </body>
 

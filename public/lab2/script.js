@@ -1,3 +1,7 @@
+// Bálint Henrik
+// 521/1
+// bhim2208
+
 let nickname;
 let money;
 let currency;
@@ -87,7 +91,8 @@ function showPlayerInfo() {
   document.getElementById('player-money').innerText = currentMoney;
 }
 
-function startButton() {
+function startButton(event) {
+  event.preventDefault();
   nickname = document.getElementById('name').value;
   money = parseInt(document.getElementById('money').value, 10);
   currency = document.getElementById('currencies').value;
