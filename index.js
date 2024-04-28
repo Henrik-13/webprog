@@ -75,8 +75,8 @@ app.post('/kereses', express.urlencoded({ extended: true }), (req, res) => {
     const minPrice = parseInt(req.body.min_ar, 10);
     for (let i = 0; i < data.length; i++) {
       if (
-        data[i].ar <= maxPrice &&
-        data[i].ar >= minPrice &&
+        (data[i].ar <= maxPrice || req.body.max_ar === '') &&
+        (data[i].ar >= minPrice || req.body.min_ar === '') &&
         (data[i].honnan === req.body.kiindulopont || req.body.kiindulopont === '') &&
         (data[i].hova === req.body.celpont || req.body.celpont === '')
       ) {
