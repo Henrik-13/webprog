@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vonattársaság</title>
-    <!-- <script src="script.js" defer></script> -->
 </head>
 
 <body>
@@ -24,9 +23,9 @@
             <option value="vasarnap">Vasárnap</option>
         </select>
         <br><br>
-        Óra: <input type="text" name="ora" id="ora" required>
+        Óra: <input type="time" name="ora" id="ora" required>
         <br><br>
-        Jegy ára: <input type="text" name="ar" id="ora" required>
+        Jegy ára: <input type="number" min="0" name="ar" id="ar" required>
         <br><br>
         Vonat típusa: <select name="vonattipus" id="vonattipus" required>
             <option value="gyors">Gyors</option>
