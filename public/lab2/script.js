@@ -79,10 +79,10 @@ function revealImage(event) {
     setTimeout(() => {
       alert(`Vesztettel! -${getLoss()}${currency}`);
       document.getElementById('pictures').replaceChild(blackImg, img);
+      if (currentMoney < getLoss()) {
+        endButton();
+      }
     }, 1000);
-  }
-  if (currentMoney < getLoss()) {
-    endButton();
   }
 }
 
