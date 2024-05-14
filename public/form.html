@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vonattársaság</title>
+</head>
+
+<body>
+    <form action="/submit" method="POST" id="jaratok-form" enctype="application/x-www-form-urlencoded">
+        Honnan: <input type="text" name="honnan" id="honnan" required>
+        <br><br>
+        Hova: <input type="text" name="hova" id="hova" required>
+        <br><br>
+        Nap: <select name="napok" id="napok" required>
+            <option value="hetfo">Hétfő</option>
+            <option value="kedd">Kedd</option>
+            <option value="szerda">Szerda</option>
+            <option value="csutortok">Csütörtök</option>
+            <option value="pentek">Péntek</option>
+            <option value="szombat">Szombat</option>
+            <option value="vasarnap">Vasárnap</option>
+        </select>
+        <br><br>
+        Óra: <input type="time" name="ora" id="ora" required>
+        <br><br>
+        Jegy ára: <input type="number" min="0" name="ar" id="ar" required>
+        <br><br>
+        Vonat típusa: <select name="vonattipus" id="vonattipus" required>
+            <option value="gyors">Gyors</option>
+            <option value="regionalis">Regionális</option>
+            <option value="expressz">Expressz</option>
+            <option value="szemely">Személyvonat</option>
+        </select>
+        <br><br>
+        <button type="submit" id="hozzaadas">Hozzáadás</button>
+    </form>
+</body>
+
+</html>
