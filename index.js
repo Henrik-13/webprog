@@ -2,6 +2,7 @@ import express from 'express';
 
 const app = express();
 const data = [];
+const foglalasok = [];
 const weekday = ['vasarnap', 'hetfo', 'kedd', 'szerda', 'csutortok', 'pentek', 'szombat'];
 
 function isValidDay(day) {
@@ -31,7 +32,7 @@ function isValidDate(date) {
 
 function checkDayOfTheWeek(date, day) {
   const d = new Date(date);
-  console.log(day, d.getDay(), weekday[d.getDay()]);
+  // console.log(day, d.getDay(), weekday[d.getDay()]);
   return day === weekday[d.getDay()];
 }
 
@@ -85,8 +86,18 @@ app.post('/foglalas', express.urlencoded({ extended: true }), (req, res) => {
       found = i;
     }
   }
-  if (found >= 0 && isValidDate(req.body.datum) && checkDayOfTheWeek(req.body.datum, data[found].napok)) {
-    data[found].foglalasok++;
+  if (
+    found >= 0 &&
+    isValidDate(req.body.datum) &&
+    checkDayOfTheWeek(req.body.datum, data[found].napok) &&
+    req.body.foglalonev
+  ) {
+    // data[found].foglalasok++;
+    // foglalasok.nap = data[found].napok;
+    req.body.nap = data[found].napok;
+    req.body.ora = data[found].ora;
+    foglalasok.push(req.body);
+    // console.log(foglalasok);
     res.send('Sikeres foglalas');
   } else {
     res.status(404).send('Nem talalhato ilyen id-val rendelkezo vonat');
