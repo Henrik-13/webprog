@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Vonat járatok</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+</head>
+
+<body>
+    <form action="/kereses" method="POST" id="kereses-form" enctype="application/x-www-form-urlencoded">
+        Kiindulópont: <input type="text" name="kiindulopont" id="kiindulopont">
+        <br><br>
+        Célpont: <input type="text" name="celpont" id="celpont">
+        <br><br>
+        Minimum ár: <input type="number" min="0" name="min_ar" id="min_ar">
+        <br><br>
+        Maximum ár: <input type="number" min="0" name="max_ar" id="max_ar">
+        <br><br>
+        <button type="submit">Keresés</button>
+    </form>
+    <% if (jaratok.length) { %>
+        <table>
+            <tr>
+                <th>Jarat ID</th>
+                <th>Honnan</th>
+                <th>Hova</th>
+                <th>Jegyar</th>
+                <th>Nap</th>
+                <th>Ora</th>
+                <th>Vonat tipusa</th>
+            </tr>
+            <% jaratok.forEach((jarat)=> { %>
+                <tr>
+                    <td>
+                        <%= jarat.jaratid %>
+                    </td>
+                    <td>
+                        <%= jarat.honnan %>
+                    </td>
+                    <td>
+                        <%= jarat.hova %>
+                    </td>
+                    <td>
+                        <%= jarat.ar %>
+                    </td>
+                    <td>
+                        <%= jarat.napok %>
+                    </td>
+                    <td>
+                        <%= jarat.ora %>
+                    </td>
+                    <td>
+                        <%= jarat.vonattipus %>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+        <% } else { %>
+            <p>Nincsenek jaratok</p>
+            <% } %>
+</body>
+
+</html>

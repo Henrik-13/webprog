@@ -1,6 +1,28 @@
 import express from 'express';
+import path from 'path';
+import morgan from 'morgan';
+import jaratLoggerMiddleware from './middleware/jaratlogger.js';
+import jaratRoutes from './routes/jaratok.js';
+import foglalasLoggerMiddleware from './middleware/foglalaslogger.js';
+import foglalasRoutes from './routes/foglalasok.js';
+import errorMiddleware from './middleware/error.js';
 
 const app = express();
+
+// app.use(express.static(path.join(process.cwd(), 'public')));
+app.use(express.static(path.join(process.cwd(), 'static')));
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(process.cwd(), 'views'));
+
+app.use(morgan('tiny'));
+app.use(jaratLoggerMiddleware);
+app.use('/jaratok', jaratRoutes);
+app.use(foglalasLoggerMiddleware);
+app.use('/foglalasok', foglalasRoutes);
+
+app.use(errorMiddleware);
+/*
 const data = [];
 const foglalasok = [];
 const weekday = ['vasarnap', 'hetfo', 'kedd', 'szerda', 'csutortok', 'pentek', 'szombat'];
@@ -92,8 +114,6 @@ app.post('/foglalas', express.urlencoded({ extended: true }), (req, res) => {
     checkDayOfTheWeek(req.body.datum, data[found].napok) &&
     req.body.foglalonev
   ) {
-    // data[found].foglalasok++;
-    // foglalasok.nap = data[found].napok;
     req.body.nap = data[found].napok;
     req.body.ora = data[found].ora;
     foglalasok.push(req.body);
@@ -120,9 +140,7 @@ app.post('/kereses', express.urlencoded({ extended: true }), (req, res) => {
   }
   // console.log(searchData);
 });
-
-app.use(express.static('public'));
-
+*/
 app.listen(8080, () => {
   console.log('Elindult a szerver');
 });

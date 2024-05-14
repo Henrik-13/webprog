@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Foglalások</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+</head>
+
+<body>
+    <% if (foglalasok.length) { %>
+        <table>
+            <tr>
+                <th>Foglalás ID</th>
+                <th>Foglaló neve</th>
+                <th>Honnan</th>
+                <th>Hova</th>
+                <th>Dátum</th>
+                <th>Óra</th>
+                <th>Jegyar</th>
+                <th>Vonat típusa</th>
+            </tr>
+            <% foglalasok.forEach((foglalas)=> { %>
+                <tr>
+                    <td>
+                        <%= foglalas.foglalasid %>
+                    </td>
+                    <td>
+                        <%= foglalas.nev %>
+                    </td>
+                    <td>
+                        <%= foglalas.honnan %>
+                    </td>
+                    <td>
+                        <%= foglalas.hova %>
+                    </td>
+                    <td>
+                        <%= foglalas.datum %>
+                    </td>
+                    <td>
+                        <%= foglalas.ora %>
+                    </td>
+                    <td>
+                        <%= foglalas.ar %>
+                    </td>
+                    <td>
+                        <%= foglalas.vonattipus %>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+        <% } else { %>
+            <p>Nincsenek foglalasok</p>
+            <% } %>
+                <form action="/foglalas" method="POST" id="foglalas-form" enctype="application/x-www-form-urlencoded">
+                    Név: <select name="nev" id="nev" required>
+                        <% felhasznalok.forEach((felhasznalo)=> { >
+                            <option>
+                                <%= felhasznalo.nev %>
+                            </option>
+                            <% }) %>
+                    </select>
+                    <br><br>
+                    ID: <input type="text" name="jaratid" id="jaratid" required>
+                    <br><br>
+                    Dátum: <input type="date" name="datum" id="datum" required>
+                    <button type="submit">Foglalás</button>
+                </form>
+</body>
+
+</html>
