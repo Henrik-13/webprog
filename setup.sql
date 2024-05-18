@@ -1,7 +1,57 @@
---DROP DATABASE IF EXISTS Vonattarsasag
+CREATE DATABASE IF NOT EXISTS VonatTarsasag;
 
---     mysql -u root -p <setup.sql
-CREATE DATABASE IF NOT EXISTS Vonattarsasag
+USE VonatTarsasag;
 
-USE Vonattarsasag
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'abc';
+CREATE USER 'bhim2208'@'localhost' IDENTIFIED BY 'Hcddh3ds%43HG5&';
+GRANT ALL PRIVILEGES ON *.* TO 'bhim2208'@'localhost';
+
+/*GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'Hcddh3ds%43HG5&';*/
+/*
+DROP TABLE Foglalasok;
+DROP TABLE Felhasznalok;
+DROP TABLE Jaratok;
+*/
+CREATE TABLE IF NOT EXISTS Jaratok (
+	JaratID VARCHAR(20) NOT NULL,
+	Honnan VARCHAR(30),
+	Hova VARCHAR(30),
+	Nap VARCHAR(15),
+	Ora TIME,
+	JegyAr INT,
+	VonatTipus VARCHAR(30),
+    CONSTRAINT PK_Jaratok PRIMARY KEY (JaratID)
+);
+
+CREATE TABLE IF NOT EXISTS Felhasznalok (
+	FelhasznaloID INT NOT NULL AUTO_INCREMENT,
+    Nev VARCHAR(30),
+    CONSTRAINT PK_Felhasznalok PRIMARY KEY (FelhasznaloID)
+);
+
+CREATE TABLE IF NOT EXISTS Foglalasok (
+	FoglalasID INT NOT NULL AUTO_INCREMENT,
+    FelhasznaloID INT,
+    JaratID VARCHAR(20),
+    Datum DATE,
+    /*Ora TIME,*/
+    CONSTRAINT PK_Foglalasok PRIMARY KEY (FoglalasID),
+    CONSTRAINT FK_Foglalasok_Felhasznalok FOREIGN KEY (FelhasznaloID) REFERENCES Felhasznalok(FelhasznaloID),
+    CONSTRAINT FK_Foglalasok_Jaratok FOREIGN KEY (JaratID) REFERENCES Jaratok(JaratID)
+);
+
+INSERT INTO Jaratok VALUES
+('adsvdgb', 'Bukarest', 'Nagyvarad', 'Hetfo', '12:50', 150, 'Expressz'),
+('bfdvsvg','Kolozsvar', 'Marosvasarhely', 'Pentek', '07:30', 25, 'Regionalis');
+
+INSERT INTO Felhasznalok(Nev) VALUES
+('Bálint Henrik'),
+('Antal Szilard');
+
+INSERT INTO Foglalasok(FelhasznaloID, JaratID, Datum) VALUES
+(1, 'bfdvsvg', '2024-05-22');
+/*
+SELECT * FROM Felhasznalok;
+
+SELECT 1 FelhasznaloID FROM Felhasznalok WHERE Nev = 'Bálint Henrik';
+*/
+SELECT Nap FROM Jaratok WHERE JaratID = 'adsvdgb';

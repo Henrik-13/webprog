@@ -12,21 +12,28 @@ try {
   process.exit(1);
 }
 */
-export const findAllFoglalasok = () => {
-  const query = `SELECT F.FoglalasID, FE.Nev, J.Honnan, J.Hova, FO.Datum, J.Ora, J.JegyAr, J.VonatTipus
-    FROM Foglalasok AS FO
+export async function findAllFoglalasok() {
+  const query = `SELECT F.FoglalasID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
+    FROM Foglalasok AS F
     INNER JOIN Jaratok AS J ON J.JaratID = F.JaratID
-    INNER JOIN Felhasznalok AS FE ON FO.FelhasznaloID = FE.FelhasznaloID
+    INNER JOIN Felhasznalok AS FE ON F.FelhasznaloID = FE.FelhasznaloID;
     `;
-  return pool.query(query);
-};
+  const [foglalasok] = await pool.query(query);
+  return foglalasok;
+}
 
-export const insertFoglalas = (req) => {
-  const query = 'INSERT INTO Foglalasok VALUES (?, ?, ?)';
-  return pool.query(query, [req.felhasznaloid, req.jaratid, req.datum]);
-};
+export async function findFoglalasByID(id) {
+  const query = `SELECT F.FoglalasID, J.JaratID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
+    FROM Foglalasok AS F
+    INNER JOIN Jaratok AS J ON J.JaratID = F.JaratID
+    INNER JOIN Felhasznalok AS FE ON F.FelhasznaloID = FE.FelhasznaloID
+    WHERE J.JaratID = ?;
+    `;
+  const foglalasok = await pool.query(query, id);
+  return foglalasok;
+}
 
-// export const deleteAllFoglalasok = () => {
-//   const query = 'DELETE FROM Foglalasok';
-//   return pool.query(query);
-// };
+export const insertFoglalas = (user) => {
+  const query = 'INSERT INTO Foglalasok(FelhasznaloID, JaratID, Datum) VALUES (?, ?, ?)';
+  return pool.query(query, [user.id, user.jaratid, user.datum]);
+};

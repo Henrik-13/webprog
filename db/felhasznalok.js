@@ -10,15 +10,23 @@ try {
   process.exit(1);
 }
 */
-export const findAllFelhasznalok = () => {
-  const query = 'SELECT Nev FROM Felhasznalok';
-  return pool.query(query);
-};
+export async function findAllFelhasznalok() {
+  const query = 'SELECT * FROM Felhasznalok';
+  const valasz = await pool.query(query);
+  return valasz;
+}
 
-export const insertFelhasznalo = (req) => {
+export async function findIDByName(nev) {
+  const query = 'SELECT 1 FelhasznaloID FROM Felhasznalok WHERE Nev = ?';
+  const valasz = await pool.query(query, nev);
+  return valasz;
+}
+
+export async function insertFelhasznalo(req) {
   const query = 'INSERT INTO Felhasznalok VALUES (?)';
-  return pool.query(query, [req.nev]);
-};
+  const res = await pool.query(query, [req.nev]);
+  return res;
+}
 
 // export const deleteAllFelhasznalo = () => {
 //   const query = 'DELETE FROM Felhasznalok';

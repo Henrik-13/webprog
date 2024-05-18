@@ -22,28 +22,28 @@
             <% foglalasok.forEach((foglalas)=> { %>
                 <tr>
                     <td>
-                        <%= foglalas.foglalasid %>
+                        <%= foglalas.FoglalasID %>
                     </td>
                     <td>
-                        <%= foglalas.nev %>
+                        <%= foglalas.Nev %>
                     </td>
                     <td>
-                        <%= foglalas.honnan %>
+                        <%= foglalas.Honnan %>
                     </td>
                     <td>
-                        <%= foglalas.hova %>
+                        <%= foglalas.Hova %>
                     </td>
                     <td>
-                        <%= foglalas.datum %>
+                        <%= foglalas.Datum %>
                     </td>
                     <td>
-                        <%= foglalas.ora %>
+                        <%= foglalas.Ora %>
                     </td>
                     <td>
-                        <%= foglalas.ar %>
+                        <%= foglalas.JegyAr %>
                     </td>
                     <td>
-                        <%= foglalas.vonattipus %>
+                        <%= foglalas.VonatTipus %>
                     </td>
                 </tr>
                 <% }) %>
@@ -51,19 +51,19 @@
         <% } else { %>
             <p>Nincsenek foglalasok</p>
             <% } %>
-                <form action="/foglalas" method="POST" id="foglalas-form" enctype="application/x-www-form-urlencoded">
+                <form action="/foglalas/<%= jaratID%>" method="POST" id="foglalas-form"
+                    enctype="application/x-www-form-urlencoded">
                     Név: <select name="nev" id="nev" required>
-                        <% felhasznalok.forEach((felhasznalo)=> { >
-                            <option>
-                                <%= felhasznalo.nev %>
+                        <% felhasznalok.forEach((felhasznalo)=> { %>
+                            <option value="<%= felhasznalo.FelhasznaloID %>">
+                                <%= felhasznalo.Nev %>
                             </option>
                             <% }) %>
                     </select>
                     <br><br>
-                    ID: <input type="text" name="jaratid" id="jaratid" required>
-                    <br><br>
                     Dátum: <input type="date" name="datum" id="datum" required>
-                    <button type="submit">Foglalás</button>
+
+                    <button type="submit">Submit</button>
                 </form>
 </body>
 

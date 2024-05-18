@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form action="/kereses" method="POST" id="kereses-form" enctype="application/x-www-form-urlencoded">
+    <form action="/" method="POST" id="kereses-form" enctype="application/x-www-form-urlencoded">
         Kiindulópont: <input type="text" name="kiindulopont" id="kiindulopont">
         <br><br>
         Célpont: <input type="text" name="celpont" id="celpont">
@@ -28,29 +28,33 @@
                 <th>Nap</th>
                 <th>Ora</th>
                 <th>Vonat tipusa</th>
+                <th>Link</th>
             </tr>
             <% jaratok.forEach((jarat)=> { %>
                 <tr>
                     <td>
-                        <%= jarat.jaratid %>
+                        <%= jarat.JaratID %>
                     </td>
                     <td>
-                        <%= jarat.honnan %>
+                        <%= jarat.Honnan %>
                     </td>
                     <td>
-                        <%= jarat.hova %>
+                        <%= jarat.Hova %>
                     </td>
                     <td>
-                        <%= jarat.ar %>
+                        <%= jarat.JegyAr %>
                     </td>
                     <td>
-                        <%= jarat.napok %>
+                        <%= jarat.Nap %>
                     </td>
                     <td>
-                        <%= jarat.ora %>
+                        <%= jarat.Ora %>
                     </td>
                     <td>
-                        <%= jarat.vonattipus %>
+                        <%= jarat.VonatTipus %>
+                    </td>
+                    <td>
+                        <a href="/foglalas/<%= jarat.JaratID%>">Link</a>
                     </td>
                 </tr>
                 <% }) %>

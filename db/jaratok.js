@@ -16,17 +16,47 @@ try {
   process.exit(1);
 }
 */
-export const findAllJaratok = () => {
+export async function findAllJaratok() {
   const query = 'SELECT * FROM Jaratok';
-  return pool.query(query);
-};
+  const res = await pool.query(query);
+  return res;
+}
 
-export const insertJarat = (req) => {
+export async function findByParameters(jarat) {
+  let query = 'SELECT * FROM Jaratok WHERE 1 = 1';
+  const params = [];
+  if (jarat.kiindulopont) {
+    console.log('kiindulopont');
+    query += ' AND Honnan = ?';
+    params.push(jarat.kiindulopont);
+  }
+  if (jarat.celpont) {
+    console.log('celpont');
+    query += ' AND Hova = ?';
+    params.push(jarat.celpont);
+  }
+  if (jarat.min_ar) {
+    console.log('min_ar');
+    query += ' AND JegyAr >= ?';
+    params.push(jarat.min_ar);
+  }
+  if (jarat.max_ar) {
+    console.log('max_ar');
+    query += ' AND JegyAr <= ?';
+    params.push(jarat.max_ar);
+  }
+  const res = await pool.query(query, params);
+  return res;
+}
+
+export async function findDayByJaratID(id) {
+  const query = 'SELECT Nap FROM Jaratok WHERE JaratID = ?';
+  const [res] = await pool.query(query, id);
+  return res;
+}
+
+export async function insertJarat(req) {
   const query = 'INSERT INTO Jaratok VALUES (?, ?, ?, ?, ?, ?, ?)';
-  return pool.query(query, [req.jaratid, req.honnan, req.hova, req.napok, req.ora, req.ar, req.vonattipus]);
-};
-
-// export const deleteAllJaratok = () => {
-//   const query = 'DELETE FROM Jaratok';
-//   return pool.query(query);
-// };
+  const res = await pool.query(query, [req.jaratid, req.honnan, req.hova, req.napok, req.ora, req.ar, req.vonattipus]);
+  return res;
+}
