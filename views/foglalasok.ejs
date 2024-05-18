@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>Foglalások</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
-</head>
+<%- include('partials/header.ejs', { title: 'Foglalások' }) %>
 
-<body>
-    <% if (foglalasok.length) { %>
-        <table>
-            <tr>
-                <th>Foglalás ID</th>
-                <th>Foglaló neve</th>
-                <th>Honnan</th>
-                <th>Hova</th>
-                <th>Dátum</th>
-                <th>Óra</th>
-                <th>Jegyar</th>
-                <th>Vonat típusa</th>
-            </tr>
-            <% foglalasok.forEach((foglalas)=> { %>
-                <tr>
-                    <td>
-                        <%= foglalas.FoglalasID %>
-                    </td>
-                    <td>
-                        <%= foglalas.Nev %>
-                    </td>
-                    <td>
-                        <%= foglalas.Honnan %>
-                    </td>
-                    <td>
-                        <%= foglalas.Hova %>
-                    </td>
-                    <td>
-                        <%= foglalas.Datum %>
-                    </td>
-                    <td>
-                        <%= foglalas.Ora %>
-                    </td>
-                    <td>
-                        <%= foglalas.JegyAr %>
-                    </td>
-                    <td>
-                        <%= foglalas.VonatTipus %>
-                    </td>
-                </tr>
-                <% }) %>
-        </table>
-        <% } else { %>
-            <p>Nincsenek foglalasok</p>
-            <% } %>
-                <form action="/foglalas/<%= jaratID%>" method="POST" id="foglalas-form"
-                    enctype="application/x-www-form-urlencoded">
-                    Név: <select name="nev" id="nev" required>
-                        <% felhasznalok.forEach((felhasznalo)=> { %>
-                            <option value="<%= felhasznalo.FelhasznaloID %>">
-                                <%= felhasznalo.Nev %>
-                            </option>
-                            <% }) %>
-                    </select>
-                    <br><br>
-                    Dátum: <input type="date" name="datum" id="datum" required>
-
-                    <button type="submit">Submit</button>
-                </form>
-</body>
+    <body>
+        <%- include('partials/navbar.ejs') %>
+            <% if (message) { %>
+                <div id="error">
+                    <%= message %>
+                </div>
+                <% } %>
+                    <% if (foglalasok.length) { %>
+                        <table>
+                            <tr>
+                                <th>Foglalás ID</th>
+                                <th>Foglaló neve</th>
+                                <th>Honnan</th>
+                                <th>Hova</th>
+                                <th>Dátum</th>
+                                <th>Óra</th>
+                                <th>Jegyár</th>
+                                <th>Vonat típusa</th>
+                            </tr>
+                            <% foglalasok.forEach((foglalas)=> { %>
+                                <tr>
+                                    <td>
+                                        <%= foglalas.FoglalasID %>
+                                    </td>
+                                    <td>
+                                        <%= foglalas.Nev %>
+                                    </td>
+                                    <td>
+                                        <%= foglalas.Honnan %>
+                                    </td>
+                                    <td>
+                                        <%= foglalas.Hova %>
+                                    </td>
+                                    <td>
+                                        <%= foglalas.Datum %>
+                                    </td>
+                                    <td>
+                                        <%= foglalas.Ora %>
+                                    </td>
+                                    <td>
+                                        <%= foglalas.JegyAr %>
+                                    </td>
+                                    <td>
+                                        <%= foglalas.VonatTipus %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </table>
+                        <% } else { %>
+                            <p class="empty">Nincsenek foglalasok</p>
+                            <% } %>
+                                <form action="/foglalas/<%= jaratID%>" method="POST" id="foglalas-form"
+                                    enctype="application/x-www-form-urlencoded">
+                                    Név: <select name="nev" id="nev" required>
+                                        <% felhasznalok.forEach((felhasznalo)=> { %>
+                                            <option value="<%= felhasznalo.FelhasznaloID %>">
+                                                <%= felhasznalo.Nev %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                    <br><br>
+                                    Dátum: <input type="date" name="datum" id="datum" required>
+                                    <button type="submit">Foglalás</button>
+                                </form>
+                                <%- include('partials/footer.ejs') %>
+    </body>
 
 </html>

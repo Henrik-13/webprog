@@ -41,17 +41,22 @@ CREATE TABLE IF NOT EXISTS Foglalasok (
 
 INSERT INTO Jaratok VALUES
 ('adsvdgb', 'Bukarest', 'Nagyvarad', 'Hetfo', '12:50', 150, 'Expressz'),
-('bfdvsvg','Kolozsvar', 'Marosvasarhely', 'Pentek', '07:30', 25, 'Regionalis');
+('bfdvsvg','Kolozsvar', 'Marosvasarhely', 'Pentek', '07:30', 25, 'Regionalis'),
+('lwcas358', 'Bukarest', 'Iasi', 'Szerda', '12:00', 300, 'Gyors'),
+('lwcawfq6', 'Csikszereda', 'Marosvasarhely', 'Csutortok', '16:10', 120, 'Expressz');
 
 INSERT INTO Felhasznalok(Nev) VALUES
 ('Bálint Henrik'),
-('Antal Szilard');
+('Nagy Jozsef'),
+('Kiss Miklos'),
+('Kovacs Bela'),
+('Nagy Anna');
 
 INSERT INTO Foglalasok(FelhasznaloID, JaratID, Datum) VALUES
-(1, 'bfdvsvg', '2024-05-22');
+(1, 'bfdvsvg', '2024-05-17'),
+(2, 'lwcawfq6', '2024-05-23');
 /*
 SELECT * FROM Felhasznalok;
 
 SELECT 1 FelhasznaloID FROM Felhasznalok WHERE Nev = 'Bálint Henrik';
 */
-SELECT Nap FROM Jaratok WHERE JaratID = 'adsvdgb';

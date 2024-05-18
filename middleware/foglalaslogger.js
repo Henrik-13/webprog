@@ -2,7 +2,6 @@ import { insertFoglalas } from '../db/foglalasok.js';
 
 export default async function jaratFoglalas(req, res, next) {
   try {
-    // console.log(req.body);
     const { nev: felhasznaloid, datum } = req.body;
     const jaratid = req.params.id;
     const id = parseInt(felhasznaloid, 10);

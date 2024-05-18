@@ -3,7 +3,6 @@ import { findDayByJaratID } from '../db/jaratok.js';
 const weekday = ['Vasarnap', 'Hetfo', 'Kedd', 'Szerda', 'Csutortok', 'Pentek', 'Szombat'];
 
 export default async function validateFoglalas(req, res, next) {
-  // console.log(req.body.datum);
   const d = /^\d{4}-\d{2}-\d{2}$/;
   if (!d.test(req.body.datum)) {
     console.log('Ervenytelen datum');
