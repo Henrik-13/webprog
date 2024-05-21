@@ -23,6 +23,12 @@ export async function findAllJaratok() {
   return res;
 }
 
+export async function findJaratByID(id) {
+  const query = 'SELECT * FROM Jaratok WHERE JaratID = ?';
+  const res = await pool.query(query, id);
+  return res;
+}
+
 export async function findByParameters(jarat) {
   let query = 'SELECT * FROM Jaratok WHERE 1 = 1';
   const params = [];

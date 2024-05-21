@@ -3,6 +3,8 @@
 
 <%- include('partials/header.ejs', { title: 'Járatok' }) %>
 
+    <script src="/show-details.js"></script>
+
     <body>
         <%- include('partials/navbar.ejs') %>
             <form action="/" method="POST" id="kereses-form" enctype="application/x-www-form-urlencoded">
@@ -23,14 +25,12 @@
                         <th>Jarat ID</th>
                         <th>Honnan</th>
                         <th>Hova</th>
-                        <th>Jegyar</th>
                         <th>Nap</th>
                         <th>Ora</th>
-                        <th>Vonat tipusa</th>
                         <th></th>
                     </tr>
                     <% jaratok.forEach((jarat)=> { %>
-                        <tr>
+                        <tr class="base-info" data-id="<%= jarat.JaratID %>">
                             <td>
                                 <%= jarat.JaratID %>
                             </td>
@@ -41,19 +41,19 @@
                                 <%= jarat.Hova %>
                             </td>
                             <td>
-                                <%= jarat.JegyAr %>
-                            </td>
-                            <td>
                                 <%= jarat.Nap %>
                             </td>
                             <td>
                                 <%= jarat.Ora %>
                             </td>
                             <td>
-                                <%= jarat.VonatTipus %>
-                            </td>
-                            <td>
                                 <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
+                            </td>
+                        </tr>
+                        <tr class="more-details" id="<%= jarat.JaratID %>">
+                            <td>Jegyár: <%= jarat.JegyAr %>
+                            </td>
+                            <td>vonattípus: <%= jarat.VonatTipus %>
                             </td>
                         </tr>
                         <% }) %>

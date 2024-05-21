@@ -14,8 +14,8 @@ try {
 
 export async function findAllFelhasznalok() {
   const query = 'SELECT * FROM Felhasznalok';
-  const valasz = await pool.query(query);
-  return valasz;
+  const res = await pool.query(query);
+  return res;
 }
 
 export async function insertFelhasznalo(req) {

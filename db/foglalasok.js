@@ -42,3 +42,9 @@ export const insertFoglalas = (user) => {
   const query = 'INSERT INTO Foglalasok(FelhasznaloID, JaratID, Datum) VALUES (?, ?, ?)';
   return pool.query(query, [user.id, user.jaratid, user.datum]);
 };
+
+export async function deleteFoglalas(id) {
+  const query = 'DELETE FROM Foglalasok WHERE FoglalasID = ?';
+  const res = await pool.query(query, id);
+  return res;
+}

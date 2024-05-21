@@ -5,10 +5,12 @@ import jaratRoutes from './routes/jaratok.js';
 import foglalasRoutes from './routes/foglalasok.js';
 import errorMiddleware from './middleware/error.js';
 import felvezetesRoutes from './routes/felvezetes.js';
+import apiRouter from './api/api-router.js';
 
 const app = express();
 
 app.use(express.static(path.join(process.cwd(), 'static')));
+app.use(express.static(path.join(process.cwd(), 'api')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'views'));
@@ -17,6 +19,8 @@ app.use(morgan('tiny'));
 app.use('/foglalas', foglalasRoutes);
 app.use('/', jaratRoutes);
 app.use('/felvezetes', felvezetesRoutes);
+
+app.use('/api', apiRouter);
 
 app.use(errorMiddleware);
 

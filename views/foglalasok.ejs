@@ -2,6 +2,7 @@
 <html lang="en">
 
 <%- include('partials/header.ejs', { title: 'Foglalások' }) %>
+    <script src="/delete-foglalas.js"></script>
 
     <body>
         <%- include('partials/navbar.ejs') %>
@@ -21,9 +22,10 @@
                                 <th>Óra</th>
                                 <th>Jegyár</th>
                                 <th>Vonat típusa</th>
+                                <th></th>
                             </tr>
                             <% foglalasok.forEach((foglalas)=> { %>
-                                <tr>
+                                <tr id="base-info" data-foglalas-id="<%= foglalas.FoglalasID %>">
                                     <td>
                                         <%= foglalas.FoglalasID %>
                                     </td>
@@ -48,6 +50,7 @@
                                     <td>
                                         <%= foglalas.VonatTipus %>
                                     </td>
+                                    <td><button class="foglalas-torles">Törlés</button></td>
                                 </tr>
                                 <% }) %>
                         </table>

@@ -56,7 +56,7 @@ INSERT INTO Foglalasok(FelhasznaloID, JaratID, Datum) VALUES
 (1, 'bfdvsvg', '2024-05-17'),
 (2, 'lwcawfq6', '2024-05-23');
 /*
-SELECT * FROM Felhasznalok;
+SELECT * FROM Foglalasok;
 
 SELECT 1 FelhasznaloID FROM Felhasznalok WHERE Nev = 'Bálint Henrik';
 */

@@ -81,7 +81,7 @@ table
 {
     margin: 50px;
     margin-bottom: 100px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width:70lvw;
 }
 
@@ -113,7 +113,7 @@ th, td:first-child
     background-color: #f9f9f9;
 }
 
-#jaratok-table td:last-child a {
+#jaratok-table td:last-child a, .foglalas-torles {
     display: inline-block;
     padding: 5px 10px;
     background-color: #242526;
@@ -133,7 +133,7 @@ th, td:first-child
     transition: background-color 0.3s ease;
 }
 
-form button:hover, #felvezetes-button:hover, #jaratok-table td:last-child a:hover {
+form button:hover, #felvezetes-button:hover, #jaratok-table td:last-child a:hover, .foglalas-torles:hover {
     background-color: #3A3B3C;
 }
 
@@ -141,4 +141,8 @@ form button:hover, #felvezetes-button:hover, #jaratok-table td:last-child a:hove
     margin-top: 50px;
     font-size: 30px;
     background-color: white;
+}
+
+.more-details {
+    display: none;
 }
