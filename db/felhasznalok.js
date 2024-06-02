@@ -4,6 +4,7 @@ try {
   await pool.query(`CREATE TABLE IF NOT EXISTS Felhasznalok (
     FelhasznaloID INT NOT NULL AUTO_INCREMENT,
       Nev VARCHAR(30),
+      Jelszo VARCHAR(100),
       CONSTRAINT PK_Felhasznalok PRIMARY KEY (FelhasznaloID)
   );`);
   console.log('Felhasznalok tabla sikeresen letrehozva');
@@ -18,8 +19,20 @@ export async function findAllFelhasznalok() {
   return res;
 }
 
-export async function insertFelhasznalo(req) {
-  const query = 'INSERT INTO Felhasznalok VALUES (?)';
-  const res = await pool.query(query, [req.nev]);
+export async function insertFelhasznalo(name, hashedPassword) {
+  const query = 'INSERT INTO Felhasznalok(Nev, Jelszo) VALUES (?, ?)';
+  const res = await pool.query(query, [name, hashedPassword]);
+  return res;
+}
+
+export async function findUserByUsername(username) {
+  const query = 'SELECT * FROM Felhasznalok WHERE Nev = ?';
+  const res = await pool.query(query, username);
+  return res;
+}
+
+export async function isFelhasznalonevTaken(username) {
+  const query = 'SELECT 1 FROM Felhasznalok WHERE NEV = ?';
+  const res = await pool.query(query, username);
   return res;
 }

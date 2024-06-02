@@ -7,7 +7,7 @@
     <body>
         <%- include('partials/navbar.ejs') %>
             <% if (message) { %>
-                <div id="error">
+                <div class="error">
                     <%= message %>
                 </div>
                 <% } %>
@@ -22,7 +22,6 @@
                                 <th>Óra</th>
                                 <th>Jegyár</th>
                                 <th>Vonat típusa</th>
-                                <th></th>
                             </tr>
                             <% foglalasok.forEach((foglalas)=> { %>
                                 <tr id="base-info" data-foglalas-id="<%= foglalas.FoglalasID %>">

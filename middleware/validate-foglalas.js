@@ -11,6 +11,7 @@ export default async function validateFoglalas(req, res, next) {
   }
   const d2 = new Date(req.body.datum);
   const [response] = await findDayByJaratID(req.params.id);
+  console.log(response, weekday[d2.getDay()]);
   if (response.Nap !== weekday[d2.getDay()]) {
     console.log('Ervenytelen nap');
     res.sendStatus(400);
