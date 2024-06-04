@@ -49,3 +49,9 @@ export async function deleteFoglalas(id) {
   const res = await pool.query(query, id);
   return res;
 }
+
+export async function findFelhasznaloIDByFoglalasID(foglalasid) {
+  const query = 'SELECT FelhasznaloID FROM Foglalasok WHERE FoglalasID = ?';
+  const res = await pool.query(query, foglalasid);
+  return res[0][0];
+}
