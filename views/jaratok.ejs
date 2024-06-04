@@ -7,7 +7,7 @@
 
     <body>
         <%- include('partials/navbar.ejs') %>
-            <form action="/" method="POST" id="kereses-form" enctype="application/x-www-form-urlencoded">
+            <form action="/" method="POST" id="kereses-form" class="forms" enctype="application/x-www-form-urlencoded">
                 Kiindulópont: <input type="text" name="kiindulopont" id="kiindulopont">
                 <br><br>
                 Célpont: <input type="text" name="celpont" id="celpont">
@@ -45,9 +45,11 @@
                             <td>
                                 <%= jarat.Ora %>
                             </td>
-                            <td>
-                                <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
-                            </td>
+                            <% if (typeof username !=='undefined' ) { %>
+                                <td>
+                                    <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
+                                </td>
+                                <% } %>
                         </tr>
                         <tr class="more-details" id="<%= jarat.JaratID %>">
                             <td>Jegyár: <%= jarat.JegyAr %>

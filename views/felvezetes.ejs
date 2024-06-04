@@ -5,7 +5,8 @@
 
     <body>
         <%- include('partials/navbar.ejs') %>
-            <form action="/felvezetes" method="POST" id="jaratok-form" enctype="application/x-www-form-urlencoded">
+            <form action="/felvezetes" method="POST" id="jaratok-form" class="forms"
+                enctype="application/x-www-form-urlencoded">
                 Honnan: <input type="text" name="honnan" id="honnan" required>
                 <br><br>
                 Hova: <input type="text" name="hova" id="hova" required>

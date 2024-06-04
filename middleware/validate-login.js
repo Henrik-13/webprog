@@ -6,6 +6,7 @@ export default async function validateLogin(req, res, next) {
     const { username, password } = req.body;
     if (!username || !password) {
       res.status(400).render('login', {
+        username: req.session.username,
         loginErrMess: 'Hiányzó felhasználónév vegy jelszó',
       });
       return;
@@ -15,7 +16,7 @@ export default async function validateLogin(req, res, next) {
     if (!user) {
       throw new Error();
     }
-    if (bcrypt.compare(password, user.Jelszo)) {
+    if (await bcrypt.compare(password, user.Jelszo)) {
       req.userID = user.FelhasznaloID;
       req.username = user.Nev;
       next();
@@ -24,6 +25,7 @@ export default async function validateLogin(req, res, next) {
     }
   } catch (error) {
     res.status(401).render('login', {
+      username: req.session.username,
       loginErrMess: 'Hibás felhasználónév vegy jelszó',
     });
   }

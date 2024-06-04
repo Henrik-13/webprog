@@ -4,6 +4,19 @@
             <li><a href="/">Home</a></li>
             <li><a href="/login">Bejelentkezés</a></li>
             <li><a href="/register">Regisztráció</a></li>
+            <% if (typeof username !=='undefined' ) { %>
+                <li>
+                    <form action="/logout" method="post" id="logout-form">
+                        <!-- <a href="/" type="submit" id="logout">Kijelentkezés</a> -->
+                        <button type="submit" id="logout">Kijelentkezés</button>
+                    </form>
+                </li>
+                <li>
+                    <h2>
+                        <%= username %>
+                    </h2>
+                </li>
+                <% } %>
         </ul>
     </div>
 </nav>

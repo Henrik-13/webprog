@@ -10,6 +10,7 @@ export default async function register(req, res, next) {
     next();
   } catch (error) {
     res.status(500).render('register', {
+      username: req.session.username,
       regErrMess: 'Hiba a felhasználó bevezetésekor',
     });
   }

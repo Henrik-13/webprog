@@ -2,10 +2,12 @@ import { insertFoglalas } from '../db/foglalasok.js';
 
 export default async function jaratFoglalas(req, res, next) {
   try {
-    const { nev: felhasznaloid, datum } = req.body;
+    const { datum } = req.body;
+    const felhasznaloid = parseInt(req.session.userID, 10);
+    console.log(felhasznaloid);
     const jaratid = req.params.id;
-    const id = parseInt(felhasznaloid, 10);
-    const [header] = await insertFoglalas({ id, jaratid, datum });
+    // const id = parseInt(felhasznaloid, 10);
+    const [header] = await insertFoglalas(felhasznaloid, jaratid, datum);
     console.log(`Inserted foglalas. Affected rows: ${header.affectedRows}`);
     next();
   } catch (err) {

@@ -5,7 +5,7 @@ import jaratLogger from '../middleware/jaratlogger.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('felvezetes');
+  res.render('felvezetes', { userID: req.session.userID, username: req.session.username });
 });
 
 router.post('/', express.urlencoded({ extended: true }), validateJarat, jaratLogger, (req, res) => {
