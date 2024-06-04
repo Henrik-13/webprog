@@ -2,6 +2,7 @@ import express from 'express';
 import { findFoglalasByID } from '../db/foglalasok.js';
 import jaratFoglalas from '../middleware/foglalaslogger.js';
 import validateFoglalas from '../middleware/validate-foglalas.js';
+import notLoggedIn from '../middleware/not-logged-in.js';
 
 const router = express.Router();
 
@@ -24,12 +25,19 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/:id', express.urlencoded({ extended: true }), validateFoglalas, jaratFoglalas, (req, res) => {
-  try {
-    res.redirect(`/foglalas/${req.params.id}?message=Foglalás sikeres`);
-  } catch (err) {
-    res.redirect(`/foglalas/${req.params.id}?message=Hiba történt a foglalás során`);
-  }
-});
+router.post(
+  '/:id',
+  express.urlencoded({ extended: true }),
+  notLoggedIn,
+  validateFoglalas,
+  jaratFoglalas,
+  (req, res) => {
+    try {
+      res.redirect(`/foglalas/${req.params.id}?message=Foglalás sikeres`);
+    } catch (err) {
+      res.redirect(`/foglalas/${req.params.id}?message=Hiba történt a foglalás során`);
+    }
+  },
+);
 
 export default router;

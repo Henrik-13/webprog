@@ -45,11 +45,9 @@
                             <td>
                                 <%= jarat.Ora %>
                             </td>
-                            <% if (typeof username !=='undefined' ) { %>
-                                <td>
-                                    <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
-                                </td>
-                                <% } %>
+                            <td>
+                                <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
+                            </td>
                         </tr>
                         <tr class="more-details" id="<%= jarat.JaratID %>">
                             <td>Jegyár: <%= jarat.JegyAr %>
