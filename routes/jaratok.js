@@ -7,7 +7,7 @@ const router = express.Router();
 router.get(['/', '/index'], async (req, res) => {
   try {
     const [jaratok] = await findAllJaratok();
-    res.render('jaratok', { jaratok });
+    res.render('jaratok', { jaratok, userID: req.session.userID, username: req.session.username });
   } catch (err) {
     res.status(500).render('error', { message: `Selection unsuccessful: ${err.message}` });
   }

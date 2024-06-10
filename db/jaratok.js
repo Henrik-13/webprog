@@ -33,22 +33,22 @@ export async function findByParameters(jarat) {
   let query = 'SELECT * FROM Jaratok WHERE 1 = 1';
   const params = [];
   if (jarat.kiindulopont) {
-    console.log('kiindulopont');
+    // console.log('kiindulopont');
     query += ' AND Honnan = ?';
     params.push(jarat.kiindulopont);
   }
   if (jarat.celpont) {
-    console.log('celpont');
+    // console.log('celpont');
     query += ' AND Hova = ?';
     params.push(jarat.celpont);
   }
   if (jarat.min_ar) {
-    console.log('min_ar');
+    // console.log('min_ar');
     query += ' AND JegyAr >= ?';
     params.push(jarat.min_ar);
   }
   if (jarat.max_ar) {
-    console.log('max_ar');
+    // console.log('max_ar');
     query += ' AND JegyAr <= ?';
     params.push(jarat.max_ar);
   }
@@ -64,6 +64,7 @@ export async function findDayByJaratID(id) {
 
 export async function insertJarat(req) {
   const query = 'INSERT INTO Jaratok VALUES (?, ?, ?, ?, ?, ?, ?)';
-  const res = await pool.query(query, [req.jaratid, req.honnan, req.hova, req.napok, req.ora, req.ar, req.vonattipus]);
+  const jaratid = Date.now().toString(36);
+  const res = await pool.query(query, [jaratid, req.honnan, req.hova, req.napok, req.ora, req.ar, req.vonattipus]);
   return res;
 }

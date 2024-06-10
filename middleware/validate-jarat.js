@@ -1,5 +1,5 @@
-const weekday = ['vasarnap', 'hetfo', 'kedd', 'szerda', 'csutortok', 'pentek', 'szombat'];
-const trainTypes = ['gyors', 'regionalis', 'expressz', 'szemely'];
+const weekday = ['Vasarnap', 'Hetfo', 'Kedd', 'Szerda', 'Csutortok', 'Pentek', 'Szombat'];
+const trainTypes = ['Gyors', 'Regionalis', 'Expressz', 'Szemely'];
 
 export default function validateJarat(req, res, next) {
   console.log(req.body);

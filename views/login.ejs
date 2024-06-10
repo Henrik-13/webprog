@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/header.ejs', { title: 'Bejelentkezés' }) %>
+
+    <body>
+        <%- include('partials/navbar.ejs') %>
+            <% if (typeof loginErrMess !=='undefined' ) { %>
+                <p class="error">
+                    <%= loginErrMess %>
+                </p>
+                <% } %>
+                    <div id="login">
+                        <form action="/login" method="POST" id="login-form" class="forms"
+                            enctype="application/x-www-form-urlencoded">
+                            Felhasználónév: <input type="text" name="username" id="username" required>
+                            <br><br>
+                            Jelszó: <input type="password" name="password" id="password" required>
+                            <br><br>
+                            <button type="submit">Bejelentkezés</button>
+                        </form>
+                    </div>
+                    <a href="/register" id="register-button">Regisztráció</a>
+
+                    <%- include('partials/footer.ejs') %>
+    </body>
+
+</html>

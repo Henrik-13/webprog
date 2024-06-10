@@ -4,14 +4,16 @@
 <%- include('partials/header.ejs'), { title: 'Error' } %>
 
     <body>
-        h1>We have encountered an error</h1>
-        <p>Message:</p>
-        <p class="message">
-            <%= message %>
-        </p>
-        <p>Maybe you would like to visit the
-            <a href="/">requests page</a>
-        </p>
+        <div id="error-page">
+            <h1>We have encountered an error</h1>
+            <p>Message:</p>
+            <p class="message">
+                <%= message %>
+            </p>
+            <p>Maybe you would like to visit the
+                <a href="/" id="error-button">Home page</a>
+            </p>
+        </div>
     </body>
 
 </html>

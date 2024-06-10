@@ -7,7 +7,7 @@
 
     <body>
         <%- include('partials/navbar.ejs') %>
-            <form action="/" method="POST" id="kereses-form" enctype="application/x-www-form-urlencoded">
+            <form action="/" method="POST" id="kereses-form" class="forms" enctype="application/x-www-form-urlencoded">
                 Kiindulópont: <input type="text" name="kiindulopont" id="kiindulopont">
                 <br><br>
                 Célpont: <input type="text" name="celpont" id="celpont">
@@ -27,7 +27,6 @@
                         <th>Hova</th>
                         <th>Nap</th>
                         <th>Ora</th>
-                        <th></th>
                     </tr>
                     <% jaratok.forEach((jarat)=> { %>
                         <tr class="base-info" data-id="<%= jarat.JaratID %>">

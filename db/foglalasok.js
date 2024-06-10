@@ -38,13 +38,20 @@ export async function findFoglalasByID(id) {
   return foglalasok;
 }
 
-export const insertFoglalas = (user) => {
+export async function insertFoglalas(felhasznaloid, jaratid, datum) {
   const query = 'INSERT INTO Foglalasok(FelhasznaloID, JaratID, Datum) VALUES (?, ?, ?)';
-  return pool.query(query, [user.id, user.jaratid, user.datum]);
-};
+  const res = await pool.query(query, [felhasznaloid, jaratid, datum]);
+  return res;
+}
 
 export async function deleteFoglalas(id) {
   const query = 'DELETE FROM Foglalasok WHERE FoglalasID = ?';
   const res = await pool.query(query, id);
   return res;
+}
+
+export async function findFelhasznaloIDByFoglalasID(foglalasid) {
+  const query = 'SELECT FelhasznaloID FROM Foglalasok WHERE FoglalasID = ?';
+  const res = await pool.query(query, foglalasid);
+  return res[0][0];
 }

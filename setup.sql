@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS Jaratok (
 CREATE TABLE IF NOT EXISTS Felhasznalok (
 	FelhasznaloID INT NOT NULL AUTO_INCREMENT,
     Nev VARCHAR(30),
+    Jelszo VARCHAR(100),
     CONSTRAINT PK_Felhasznalok PRIMARY KEY (FelhasznaloID)
 );
 
@@ -33,7 +34,6 @@ CREATE TABLE IF NOT EXISTS Foglalasok (
     FelhasznaloID INT,
     JaratID VARCHAR(20),
     Datum DATE,
-    /*Ora TIME,*/
     CONSTRAINT PK_Foglalasok PRIMARY KEY (FoglalasID),
     CONSTRAINT FK_Foglalasok_Felhasznalok FOREIGN KEY (FelhasznaloID) REFERENCES Felhasznalok(FelhasznaloID),
     CONSTRAINT FK_Foglalasok_Jaratok FOREIGN KEY (JaratID) REFERENCES Jaratok(JaratID)
@@ -55,8 +55,4 @@ INSERT INTO Felhasznalok(Nev) VALUES
 INSERT INTO Foglalasok(FelhasznaloID, JaratID, Datum) VALUES
 (1, 'bfdvsvg', '2024-05-17'),
 (2, 'lwcawfq6', '2024-05-23');
-/*
-SELECT * FROM Foglalasok;
 
-SELECT 1 FelhasznaloID FROM Felhasznalok WHERE Nev = 'Bálint Henrik';
-*/

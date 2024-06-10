@@ -21,11 +21,16 @@ nav {
     z-index: 99;
 }
 
-nav li {
+nav ul {
+    display: flex;
+    flex-direction: row;
     list-style: none;
+    padding: 0;
+    align-items: center;
+    margin: 10px;
 }
 
-nav a, footer a {
+nav a, footer a, #logout {
     color: #f2f2f2;
     text-decoration: none;
     font-size: 18px;
@@ -33,11 +38,25 @@ nav a, footer a {
     padding: 9px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
-nav a:hover, footer a:hover {
+nav a:hover, footer a:hover, #logout:hover {
     background: #3A3B3C;
 }
+
+#logout {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+nav h2 {
+    color: white;
+    margin: 0 auto;
+}   
+
 
 footer {
     display: flex;
@@ -54,7 +73,7 @@ footer {
     z-index: 99;
 }
 
-form {
+.forms {
     background-color: white;
     margin-top: 30px;
     padding: 30px;
@@ -65,7 +84,7 @@ input, select {
     margin-left: 10px;
 }
 
-form button {
+.forms button {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
@@ -100,7 +119,7 @@ th
 td
 {
     background-color: white;
-    text-align: left;
+    text-align: center;
 }
 
 th, td:first-child
@@ -108,12 +127,8 @@ th, td:first-child
     text-align: center;
 }
 
-#jaratok-table th:last-child, #jaratok-table td:last-child {
+#jaratok-table td:last-child a, .foglalas-torles, #error-button {
     text-align: center;
-    background-color: #f9f9f9;
-}
-
-#jaratok-table td:last-child a, .foglalas-torles {
     display: inline-block;
     padding: 5px 10px;
     background-color: #242526;
@@ -123,7 +138,7 @@ th, td:first-child
     transition: background-color 0.3s ease;
 }
 
-#felvezetes-button {
+#felvezetes-button, #login-button, #register-button {
     margin: 20px;
     padding: 10px;
     background-color: #242526;
@@ -137,7 +152,11 @@ form button:hover, #felvezetes-button:hover, #jaratok-table td:last-child a:hove
     background-color: #3A3B3C;
 }
 
-.empty, #error {
+/* td:hover {
+    background-color: #3A3B3C;
+} */
+
+.empty, .error {
     margin-top: 50px;
     font-size: 30px;
     background-color: white;
@@ -145,4 +164,8 @@ form button:hover, #felvezetes-button:hover, #jaratok-table td:last-child a:hove
 
 .more-details {
     display: none;
+}
+
+#error-page {
+    background-color: white;
 }

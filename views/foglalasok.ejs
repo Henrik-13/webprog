@@ -7,7 +7,7 @@
     <body>
         <%- include('partials/navbar.ejs') %>
             <% if (message) { %>
-                <div id="error">
+                <div class="error">
                     <%= message %>
                 </div>
                 <% } %>
@@ -22,7 +22,6 @@
                                 <th>Óra</th>
                                 <th>Jegyár</th>
                                 <th>Vonat típusa</th>
-                                <th></th>
                             </tr>
                             <% foglalasok.forEach((foglalas)=> { %>
                                 <tr id="base-info" data-foglalas-id="<%= foglalas.FoglalasID %>">
@@ -50,23 +49,19 @@
                                     <td>
                                         <%= foglalas.VonatTipus %>
                                     </td>
-                                    <td><button class="foglalas-torles">Törlés</button></td>
+                                    <% if ( username===foglalas.Nev) { %>
+                                        <td>
+                                            <button class="foglalas-torles">Törlés</button>
+                                        </td>
+                                        <% } %>
                                 </tr>
                                 <% }) %>
                         </table>
                         <% } else { %>
                             <p class="empty">Nincsenek foglalasok</p>
                             <% } %>
-                                <form action="/foglalas/<%= jaratID%>" method="POST" id="foglalas-form"
+                                <form action="/foglalas/<%= jaratID%>" method="POST" id="foglalas-form" class="forms"
                                     enctype="application/x-www-form-urlencoded">
-                                    Név: <select name="nev" id="nev" required>
-                                        <% felhasznalok.forEach((felhasznalo)=> { %>
-                                            <option value="<%= felhasznalo.FelhasznaloID %>">
-                                                <%= felhasznalo.Nev %>
-                                            </option>
-                                            <% }) %>
-                                    </select>
-                                    <br><br>
                                     Dátum: <input type="date" name="datum" id="datum" required>
                                     <button type="submit">Foglalás</button>
                                 </form>
