@@ -6,6 +6,8 @@ export default async function jaratFoglalas(req, res, next) {
     req.filteredJaratok = filteredJaratok;
     next();
   } catch (err) {
-    res.status(500).render('error', { message: `Search unsuccessful: ${err.message}` });
+    res
+      .status(500)
+      .render('error', { title: '500 Internal Server Error', message: `Search unsuccessful: ${err.message}` });
   }
 }

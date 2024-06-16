@@ -24,8 +24,9 @@ CREATE TABLE IF NOT EXISTS Jaratok (
 
 CREATE TABLE IF NOT EXISTS Felhasznalok (
 	FelhasznaloID INT NOT NULL AUTO_INCREMENT,
-    Nev VARCHAR(30),
+    Nev VARCHAR(30) UNIQUE,
     Jelszo VARCHAR(100),
+    JogID INT,
     CONSTRAINT PK_Felhasznalok PRIMARY KEY (FelhasznaloID)
 );
 
@@ -50,7 +51,7 @@ INSERT INTO Felhasznalok(Nev) VALUES
 ('Nagy Jozsef'),
 ('Kiss Miklos'),
 ('Kovacs Bela'),
-('Nagy Anna');
+('Nagy Anna');	
 
 INSERT INTO Foglalasok(FelhasznaloID, JaratID, Datum) VALUES
 (1, 'bfdvsvg', '2024-05-17'),

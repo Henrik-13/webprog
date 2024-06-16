@@ -49,16 +49,14 @@
                                     <td>
                                         <%= foglalas.VonatTipus %>
                                     </td>
-                                    <% if ( username===foglalas.Nev) { %>
-                                        <td>
-                                            <button class="foglalas-torles">Törlés</button>
-                                        </td>
-                                        <% } %>
+                                    <td>
+                                        <button class="foglalas-torles">Törlés</button>
+                                    </td>
                                 </tr>
                                 <% }) %>
                         </table>
                         <% } else { %>
-                            <p class="empty">Nincsenek foglalasok</p>
+                            <p class="empty">Nincsenek foglalások</p>
                             <% } %>
                                 <form action="/foglalas/<%= jaratID%>" method="POST" id="foglalas-form" class="forms"
                                     enctype="application/x-www-form-urlencoded">

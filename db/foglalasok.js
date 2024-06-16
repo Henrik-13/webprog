@@ -6,7 +6,6 @@ try {
       FelhasznaloID INT,
       JaratID VARCHAR(20),
       Datum DATE,
-      /*Ora TIME,*/
       CONSTRAINT PK_Foglalasok PRIMARY KEY (FoglalasID),
       CONSTRAINT FK_Foglalasok_Felhasznalok FOREIGN KEY (FelhasznaloID) REFERENCES Felhasznalok(FelhasznaloID),
       CONSTRAINT FK_Foglalasok_Jaratok FOREIGN KEY (JaratID) REFERENCES Jaratok(JaratID)
@@ -27,7 +26,7 @@ try {
 //   return foglalasok;
 // }
 
-export async function findFoglalasByID(id) {
+export async function findFoglalasByJaratID(id) {
   const query = `SELECT F.FoglalasID, J.JaratID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
     FROM Foglalasok AS F
     INNER JOIN Jaratok AS J ON J.JaratID = F.JaratID
@@ -35,6 +34,17 @@ export async function findFoglalasByID(id) {
     WHERE J.JaratID = ?;
     `;
   const foglalasok = await pool.query(query, id);
+  return foglalasok;
+}
+
+export async function findFoglalasByFelhasznalo(jaratid, nev) {
+  const query = `SELECT F.FoglalasID, J.JaratID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
+    FROM Foglalasok AS F
+    INNER JOIN Jaratok AS J ON J.JaratID = F.JaratID
+    INNER JOIN Felhasznalok AS FE ON F.FelhasznaloID = FE.FelhasznaloID
+    WHERE J.JaratID = ? AND FE.Nev = ?;
+    `;
+  const foglalasok = await pool.query(query, [jaratid, nev]);
   return foglalasok;
 }
 

@@ -9,13 +9,11 @@ const router = express.Router();
 router.use('/', alreadyLoggedIn);
 
 router.get('/', (req, res) => {
-  res.render('register', {
-    userID: req.session.userID,
-    username: req.session.username,
-  });
+  res.render('register');
 });
 
 router.post('/', express.urlencoded({ extended: true }), validateRegister, register, setSession, (req, res) => {
+  // console.log(req.session);
   res.redirect('/');
 });
 

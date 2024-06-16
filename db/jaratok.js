@@ -30,27 +30,32 @@ export async function findJaratByID(id) {
 }
 
 export async function findByParameters(jarat) {
+  // console.log(jarat);
   let query = 'SELECT * FROM Jaratok WHERE 1 = 1';
   const params = [];
   if (jarat.kiindulopont) {
-    // console.log('kiindulopont');
-    query += ' AND Honnan = ?';
-    params.push(jarat.kiindulopont);
+    query += ' AND Honnan LIKE ?';
+    params.push(`${jarat.kiindulopont}%`);
   }
   if (jarat.celpont) {
-    // console.log('celpont');
-    query += ' AND Hova = ?';
-    params.push(jarat.celpont);
+    query += ' AND Hova LIKE ?';
+    params.push(`${jarat.celpont}%`);
   }
   if (jarat.min_ar) {
-    // console.log('min_ar');
     query += ' AND JegyAr >= ?';
     params.push(jarat.min_ar);
   }
   if (jarat.max_ar) {
-    // console.log('max_ar');
     query += ' AND JegyAr <= ?';
     params.push(jarat.max_ar);
+  }
+  if (jarat.napok !== 'Osszes') {
+    query += ' AND Nap = ?';
+    params.push(jarat.napok);
+  }
+  if (jarat.vonattipus !== 'Osszes') {
+    query += ' AND VonatTipus = ?';
+    params.push(jarat.vonattipus);
   }
   const res = await pool.query(query, params);
   return res;
@@ -62,9 +67,23 @@ export async function findDayByJaratID(id) {
   return res;
 }
 
-export async function insertJarat(req) {
+export async function insertJarat(jarat) {
   const query = 'INSERT INTO Jaratok VALUES (?, ?, ?, ?, ?, ?, ?)';
   const jaratid = Date.now().toString(36);
-  const res = await pool.query(query, [jaratid, req.honnan, req.hova, req.napok, req.ora, req.ar, req.vonattipus]);
+  const res = await pool.query(query, [
+    jaratid,
+    jarat.honnan,
+    jarat.hova,
+    jarat.napok,
+    jarat.ora,
+    jarat.ar,
+    jarat.vonattipus,
+  ]);
+  return res;
+}
+
+export async function deleteJarat(jaratid) {
+  const query = 'DELETE FROM Jaratok WHERE JaratID = ?';
+  const res = await pool.query(query, jaratid);
   return res;
 }

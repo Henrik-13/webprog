@@ -1,5 +1,5 @@
 import express from 'express';
-import { findFoglalasByID } from '../db/foglalasok.js';
+import { findFoglalasByFelhasznalo, findFoglalasByJaratID } from '../db/foglalasok.js';
 import jaratFoglalas from '../middleware/foglalaslogger.js';
 import validateFoglalas from '../middleware/validate-foglalas.js';
 import notLoggedIn from '../middleware/not-logged-in.js';
@@ -8,20 +8,24 @@ const router = express.Router();
 
 router.get('/:id', async (req, res) => {
   try {
-    const [foglalasok] = await findFoglalasByID(req.params.id);
+    let foglalasok;
+    if (req.session.roleID === 1) {
+      [foglalasok] = await findFoglalasByJaratID(req.params.id);
+    } else {
+      [foglalasok] = await findFoglalasByFelhasznalo(req.params.id, req.session.username);
+    }
     const jaratID = req.params.id;
-    // const [felhasznalok] = await findAllFelhasznalok();
     const { message } = req.query;
     res.render('foglalasok', {
       foglalasok,
-      // felhasznalok,
       jaratID,
       message,
-      userID: req.session.userID,
+      /* userID: req.session.userID, */
       username: req.session.username,
+      roleID: req.session.roleID,
     });
   } catch (err) {
-    res.status(500).render('error', { message: `Selection unsuccessful: ${err.message}` });
+    res.status(500).render('error', { title: '500', message: `Selection unsuccessful: ${err.message}` });
   }
 });
 
