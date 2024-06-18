@@ -13,17 +13,21 @@
                             <%= username %>
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
                             <li>
                                 <a class="dropdown-item" href="#">Saját foglalások</a>
-                            <li>
-                                <hr class="dropdown-divider">
                             </li>
-                            <li>
-                                <form class="dropdown-item" action="/logout" method="post" id="logout-form">
-                                    <button type="submit" id="logout">Kijelentkezés</button>
-                                </form>
-                            </li>
+                            <% if ( typeof roleID !=='undefined' && roleID===1) { %>
+                                <a class="dropdown-item" href="/felvezetes" id="felvezetes-button">Új járat
+                                    felvezetése</a>
+                                <% } %>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <form class="dropdown-item" action="/logout" method="post" id="logout-form">
+                                            <button type="submit" id="logout">Kijelentkezés</button>
+                                        </form>
+                                    </li>
                     </li>
                 </ul>
                 <% } else { %>

@@ -5,47 +5,60 @@
 
     <body>
         <%- include('partials/navbar.ejs') %>
-            <form action="/felvezetes" method="POST" id="jaratok-form" class="forms"
+            <form class="bg-light align-items-center p-4 m-5" action="/felvezetes" method="POST" id="jaratok-form"
                 enctype="application/x-www-form-urlencoded">
-                <div class="form-group">
-                    <label class="form-label" for="honnan">Honnan:</label>
-                    <input type="text" name="honnan" id="honnan" class="form-control" required>
+                <div class="row mb-3">
+                    <label for="honnan" class="col-sm-3 col-form-label">Honnan:</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="honnan" id="honnan" class="form-control" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="hova">Hova:</label>
-                    <input type="text" name="hova" id="hova" class="form-control" required>
+                <div class="row mb-3">
+                    <label for="hova" class="col-sm-3 col-form-label">Hova:</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="hova" id="hova" class="form-control" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="napok">Nap:</label>
-                    <select name="napok" id="napok" class="form-select" required>
-                        <option value="Hetfo">Hétfő</option>
-                        <option value="Kedd">Kedd</option>
-                        <option value="Szerda">Szerda</option>
-                        <option value="Csutortok">Csütörtök</option>
-                        <option value="Pentek">Péntek</option>
-                        <option value="Szombat">Szombat</option>
-                        <option value="Vasarnap">Vasárnap</option>
-                    </select>
+                <div class="row mb-3">
+                    <label for="napok" class="col-sm-3 col-form-label">Nap:</label>
+                    <div class="col-sm-6">
+                        <select name="napok" id="napok" class="form-select" required>
+                            <option value="Hetfo">Hétfő</option>
+                            <option value="Kedd">Kedd</option>
+                            <option value="Szerda">Szerda</option>
+                            <option value="Csutortok">Csütörtök</option>
+                            <option value="Pentek">Péntek</option>
+                            <option value="Szombat">Szombat</option>
+                            <option value="Vasarnap">Vasárnap</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="ora">Óra:</label>
-                    <input type="time" name="ora" id="ora" required>
+                <div class="row mb-3">
+                    <label for="ora" class="col-sm-3 col-form-label">Óra:</label>
+                    <div class="col-sm-6">
+                        <input type="time" name="ora" id="ora" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="ar">Jegy ára:</label>
-                    <input type="number" min="0" name="ar" id="ar" class="form-control" required>
+                <div class="row mb-3">
+                    <label for="ar" class="col-sm-5 col-form-label">Jegy ára:</label>
+                    <div class="col-sm-7">
+                        <input type="number" min="0" name="ar" id="ar" class="form-control" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="vonattipus">Vonat típusa:</label>
-                    <select name="vonattipus" id="vonattipus" class="form-select" required>
-                        <option value="Gyors">Gyors</option>
-                        <option value="Regionalis">Regionális</option>
-                        <option value="Expressz">Expressz</option>
-                        <option value="Szemely">Személyvonat</option>
-                    </select>
+                <div class="row mb-3">
+                    <label for="vonattipus" class="col-sm-5 col-form-label">Vonat típusa:</label>
+                    <div class="col-sm-7">
+                        <select name="vonattipus" id="vonattipus" class="form-select" required>
+                            <option value="Gyors">Gyors</option>
+                            <option value="Regionalis">Regionális</option>
+                            <option value="Expressz">Expressz</option>
+                            <option value="Szemely">Személyvonat</option>
+                        </select>
+                    </div>
                 </div>
-                <br><br>
-                <button type="submit" id="hozzaadas">Hozzáadás</button>
+                <div class="row pt-3">
+                    <button class="btn btn-primary" type="submit" id="hozzaadas">Hozzáadás</button>
+                </div>
             </form>
             <%- include('partials/footer.ejs') %>
     </body>

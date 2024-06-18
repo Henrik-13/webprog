@@ -40,6 +40,8 @@ window.onload = () => {
   const deleteButtons = document.querySelectorAll('.jarat-torles');
   deleteButtons.forEach((button) => {
     button.addEventListener('click', async () => {
+      // const ans = confirm('Biztosan szeretne torolni a jaratot?');
+      // if (ans) {
       const row = button.closest('tr');
       const jaratID = row.getAttribute('data-id');
       try {
@@ -54,6 +56,7 @@ window.onload = () => {
         console.error('Error:', error);
         alert('Hiba a jarat torlesekor');
       }
+      // }
     });
   });
 

@@ -87,3 +87,29 @@ export async function deleteJarat(jaratid) {
   const res = await pool.query(query, jaratid);
   return res;
 }
+
+export async function findAtszallasosJaratok(jarat) {
+  if (!jarat.kiindulopont || !jarat.celpont || !jarat.napok) {
+    return [];
+  }
+  // console.log(jarat);
+  const params = [];
+  let query = `
+    SELECT J1.Honnan, J1.Hova Megallo, J2.Hova, J1.Nap
+    FROM Jaratok J1 JOIN Jaratok J2 ON J1.Hova = J2.Honnan
+    WHERE J1.Hova != J2.Hova AND J1.Honnan != J2.Hova AND J1.Nap = J2.Nap`;
+  query += ' AND J1.Honnan LIKE ?';
+  params.push(`${jarat.kiindulopont}%`);
+  query += ' AND J2.Hova LIKE ?';
+  params.push(`${jarat.celpont}%`);
+  if (jarat.napok !== 'Osszes') {
+    query += ' AND Nap = ?';
+    params.push(jarat.napok);
+  }
+  if (jarat.vonattipus !== 'Osszes') {
+    query += ' AND VonatTipus = ?';
+    params.push(jarat.vonattipus);
+  }
+  const res = await pool.query(query, params);
+  return res;
+}

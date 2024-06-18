@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   res.render('felvezetes', {
-    /* userID: req.session.userID, */ username: req.session.username,
+    username: req.session.username,
     roleID: req.session.roleID,
   });
 });

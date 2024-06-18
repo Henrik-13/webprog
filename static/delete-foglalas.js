@@ -1,8 +1,8 @@
 window.onload = () => {
   const deleteButtons = document.querySelectorAll('.foglalas-torles');
   deleteButtons.forEach((button) => {
-    button.addEventListener('click', async (event) => {
-      event.preventDefault();
+    button.addEventListener('click', async () => {
+      // const ans = confirm('Biztosan szeretne torolni a jaratot?');
       const row = button.closest('tr');
       const foglalasID = row.getAttribute('data-foglalas-id');
       try {

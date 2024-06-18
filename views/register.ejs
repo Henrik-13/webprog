@@ -11,22 +11,23 @@
                 </p>
                 <% } %>
                     <div id="registration">
-                        <form action="/register" method="POST" id="registration-form" class="forms"
-                            enctype="application/x-www-form-urlencoded">
-                            <div class="form-outline mb-4">
+                        <form class="bg-light align-items-center p-4" action="/register" method="POST"
+                            id="registration-form" enctype="application/x-www-form-urlencoded">
+                            <div class="row m-2">
                                 <label class="form-label" for="username">Felhasználónév:</label>
                                 <input type="text" name="username" id="username" class="form-control" required>
                             </div>
-                            <div class="form-outline mb-4">
+                            <div class="row m-2">
                                 <label class="form-label" for="password1">Jelszó:</label>
                                 <input type="password" name="password1" id="password1" class="form-control" required>
                             </div>
-                            <div class="form-outline mb-4">
+                            <div class="row m-2">
                                 <label class="form-label" for="confirm">Jelszó megerősítése:</label>
                                 <input type="password" name="confirm" id="confirm" class="form-control" required>
                             </div>
-                            <br><br>
-                            <button type="submit">Regisztráció</button>
+                            <div class="row p-3">
+                                <button class="btn btn-primary" type="submit">Regisztráció</button>
+                            </div>
                         </form>
                     </div>
                     <a href="/login" id="login-button">Bejelentkezés</a>

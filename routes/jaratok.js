@@ -1,5 +1,5 @@
 import express from 'express';
-import { findAllJaratok, findByParameters } from '../db/jaratok.js';
+import { findAllJaratok, findAtszallasosJaratok, findByParameters } from '../db/jaratok.js';
 import jaratKereses from '../middleware/jaratkereses.js';
 
 const router = express.Router();
@@ -13,12 +13,20 @@ router.get(['/', '/index'], async (req, res) => {
       roleID: req.session.roleID,
     });
   } catch (err) {
-    res.status(500).render('error', { message: `Selection unsuccessful: ${err.message}` });
+    res
+      .status(500)
+      .render('error', { title: '500 Internal Server Error', message: `Selection unsuccessful: ${err.message}` });
   }
 });
 
 router.post(['/', '/index'], express.urlencoded({ extended: true }), jaratKereses, async (req, res) => {
   try {
+    if (req.body.atszallas) {
+      const [atszallasosJaratok] = await findAtszallasosJaratok(req.body);
+      if (atszallasosJaratok) {
+        console.log(atszallasosJaratok);
+      }
+    }
     const [filteredJaratok] = await findByParameters(req.body);
     res.render('jaratok', {
       jaratok: filteredJaratok,
@@ -26,7 +34,9 @@ router.post(['/', '/index'], express.urlencoded({ extended: true }), jaratKerese
       roleID: req.session.roleID,
     });
   } catch (err) {
-    res.status(500).render('error', { message: `Selection unsuccessful: ${err.message}` });
+    res
+      .status(500)
+      .render('error', { title: '500 Internal Server Error', message: `Selection unsuccessful: ${err.message}` });
   }
 });
 

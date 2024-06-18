@@ -61,7 +61,7 @@ footer {
     justify-content: space-between;
     z-index: 99;
 }
-
+/* 
 .forms {
     background-color: white;
     margin-top: 30px;
@@ -83,44 +83,12 @@ input, select {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+} */
 
 table {
     text-align: center;
 }
 
-
-/*
-table
-{
-    margin: 50px;
-    margin-bottom: 100px;
-    width:70lvw;
-}
-
-tr, th, td
-{
-    padding: 10px;
-}
-
-th
-{
-    background-color: green;
-    color: white;
-    text-align: left;
-}
-
-td
-{
-    background-color: white;
-    text-align: center;
-}
-
-th, td:first-child
-{
-    text-align: center;
-}
-*/
 #jaratok-table a, .foglalas-torles, .jarat-torles, #error-button {
     text-align: center;
     display: inline-block;
@@ -133,7 +101,7 @@ th, td:first-child
     transition: background-color 0.3s ease;
 }
 
-#felvezetes-button, #login-button, #register-button {
+#login-button, #register-button {
     margin: 20px;
     padding: 10px;
     background-color: #242526;
@@ -146,10 +114,6 @@ th, td:first-child
 form button:hover, #felvezetes-button:hover, #jaratok-table a:hover, .foglalas-torles:hover, .jarat-torles:hover {
     background-color: #3A3B3C;
 }
-
-/* td:hover {
-    background-color: #3A3B3C;
-} */
 
 .empty, .error {
     margin-top: 50px;

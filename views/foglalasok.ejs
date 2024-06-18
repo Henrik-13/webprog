@@ -76,10 +76,14 @@
                             <p class="empty">Nincsenek foglalások</p>
                             <% } %>
                                 <form action="/foglalas/<%= jarat.JaratID%>" method="POST" id="foglalas-form"
-                                    class="forms" enctype="application/x-www-form-urlencoded">
-                                    Dátum: <input type="date" name="datum" id="datum" min="<%=kezdDatum%>" step="7"
-                                        required>
-                                    <button type="submit">Foglalás</button>
+                                    class="bg-light align-items-center p-4" enctype="application/x-www-form-urlencoded">
+                                    <div class="row mb-2">
+                                        Dátum: <input type="date" name="datum" id="datum" min="<%=kezdDatum%>" step="7"
+                                            required>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <button class="btn btn-primary" type="submit">Foglalás</button>
+                                    </div>
                                 </form>
                                 <%- include('partials/footer.ejs') %>
     </body>

@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', express.urlencoded({ extended: true }), validateRegister, register, setSession, (req, res) => {
-  // console.log(req.session);
   res.redirect('/');
 });
 

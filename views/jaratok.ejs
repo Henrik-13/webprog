@@ -7,25 +7,26 @@
 
     <body>
         <%- include('partials/navbar.ejs') %>
-            <form action="/" method="POST" id="kereses-form" class="forms form-inline"
+            <form action="/" method="POST" id="kereses-form"
+                class="forms bg-light row gx-3 gy-2 align-items-center mt-5 mb-4 pb-3"
                 enctype="application/x-www-form-urlencoded">
-                <div class="form-group">
+                <div class="form-group col-auto">
                     <label for="kiindulopont">Kiindulópont:</label>
                     <input type="text" name="kiindulopont" id="kiindulopont" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-auto">
                     <label for="celpont">Célpont:</label>
                     <input type="text" name="celpont" id="celpont" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-auto">
                     <label for="min_ar">Minimum ár:</label>
                     <input type="number" min="0" name="min_ar" id="min_ar" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-auto">
                     <label for="max_ar">Maximum ár:</label>
                     <input type="number" min="0" name="max_ar" id="max_ar" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-auto">
                     <label class="form-label" for="napok">Nap:</label>
                     <select name="napok" id="napok" class="form-select" required>
                         <option value="Osszes">Összes</option>
@@ -38,7 +39,7 @@
                         <option value="Vasarnap">Vasárnap</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-auto">
                     <label class="form-label" for="vonattipus">Vonat típusa:</label>
                     <select name="vonattipus" id="vonattipus" class="form-select" required>
                         <option value="Osszes">Összes</option>
@@ -48,64 +49,65 @@
                         <option value="Szemely">Személyvonat</option>
                     </select>
                 </div>
-                Átszállásos járatok <input type="checkbox" name="atszallas" id="atszallas" class="form-check-input">
-                <br><br>
-                <button type="submit">Keresés</button>
+                <div class="form-check col-auto">
+                    <input class="form-check-input" type="checkbox" name="atszallas" id="atszallas">
+                    <label class="form-check-label" for="atszallas">Átszállásos járatok</label>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" type="submit">Keresés</button>
+                </div>
             </form>
-            <% if ( typeof roleID !=='undefined' && roleID===1) { %>
-                <a href="/felvezetes" id="felvezetes-button">Új járat felvezetése</a>
-                <% } %>
-                    <% if (jaratok.length) { %>
-                        <table id="jaratok-table" class="table table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Járat ID</th>
-                                    <th>Honnan</th>
-                                    <th>Hova</th>
-                                    <th>Nap</th>
-                                    <th>Óra</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-light">
-                                <% jaratok.forEach((jarat)=> { %>
-                                    <tr class="base-info" data-id="<%= jarat.JaratID %>">
-                                        <td>
-                                            <%= jarat.JaratID %>
-                                        </td>
-                                        <td>
-                                            <%= jarat.Honnan %>
-                                        </td>
-                                        <td>
-                                            <%= jarat.Hova %>
-                                        </td>
-                                        <td>
-                                            <%= jarat.Nap %>
-                                        </td>
-                                        <td>
-                                            <%= jarat.Ora %>
-                                        </td>
-                                        <td>
-                                            <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
-                                        </td>
-                                        <% if (typeof roleID !=='undefined' && roleID===1) { %>
-                                            <td>
-                                                <button class="jarat-torles">Törlés</button>
-                                            </td>
-                                            <% } %>
-                                    </tr>
-                                    <tr class="more-details" id="<%= jarat.JaratID %>">
-                                        <td>Jegyár: <%= jarat.JegyAr %>
-                                        </td>
-                                        <td>vonattípus: <%= jarat.VonatTipus %>
-                                        </td>
-                                    </tr>
-                                    <% }) %>
-                            </tbody>
-                        </table>
-                        <% } else { %>
-                            <p class="empty">Nincsenek jaratok</p>
-                            <% } %>
-                                <%- include('partials/footer.ejs') %>
+            <% if (jaratok.length) { %>
+                <table id="jaratok-table" class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Járat ID</th>
+                            <th>Honnan</th>
+                            <th>Hova</th>
+                            <th>Nap</th>
+                            <th>Óra</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-light">
+                        <% jaratok.forEach((jarat)=> { %>
+                            <tr class="base-info" data-id="<%= jarat.JaratID %>">
+                                <td>
+                                    <%= jarat.JaratID %>
+                                </td>
+                                <td>
+                                    <%= jarat.Honnan %>
+                                </td>
+                                <td>
+                                    <%= jarat.Hova %>
+                                </td>
+                                <td>
+                                    <%= jarat.Nap %>
+                                </td>
+                                <td>
+                                    <%= jarat.Ora %>
+                                </td>
+                                <td>
+                                    <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
+                                </td>
+                                <% if (typeof roleID !=='undefined' && roleID===1) { %>
+                                    <td>
+                                        <button class="jarat-torles">Törlés</button>
+                                    </td>
+                                    <% } %>
+                            </tr>
+                            <tr class="more-details" id="<%= jarat.JaratID %>">
+                                <td>Jegyár: <%= jarat.JegyAr %>
+                                </td>
+                                <td>vonattípus: <%= jarat.VonatTipus %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <p class="empty">Nincsenek jaratok</p>
+                    <% } %>
+                        <%- include('partials/footer.ejs') %>
     </body>
 
 </html>
