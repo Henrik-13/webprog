@@ -1,22 +1,37 @@
-<nav>
-    <div id="navbar">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/login">Bejelentkezés</a></li>
-            <li><a href="/register">Regisztráció</a></li>
-            <% if (typeof username !=='undefined' ) { %>
-                <li>
-                    <form action="/logout" method="post" id="logout-form">
-                        <!-- <a href="/" type="submit" id="logout">Kijelentkezés</a> -->
-                        <button type="submit" id="logout">Kijelentkezés</button>
-                    </form>
-                </li>
-                <li>
-                    <h2>
-                        <%= username %>
-                    </h2>
-                </li>
-                <% } %>
+<nav class="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Vonatállomás</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
         </ul>
+        <span>
+            <% if (typeof username !=='undefined' ) { %>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown dropstart">
+                        <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <%= username %>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
+                            <li>
+                                <a class="dropdown-item" href="#">Saját foglalások</a>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form class="dropdown-item" action="/logout" method="post" id="logout-form">
+                                    <button type="submit" id="logout">Kijelentkezés</button>
+                                </form>
+                            </li>
+                    </li>
+                </ul>
+                <% } else { %>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="/login">Bejelentkezés</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/register">Regisztráció</a></li>
+                    </ul>
+                    <% } %>
+        </span>
     </div>
 </nav>

@@ -3,8 +3,29 @@ import { findFoglalasByFelhasznalo, findFoglalasByJaratID } from '../db/foglalas
 import jaratFoglalas from '../middleware/foglalaslogger.js';
 import validateFoglalas from '../middleware/validate-foglalas.js';
 import notLoggedIn from '../middleware/not-logged-in.js';
+import { findJaratByID } from '../db/jaratok.js';
 
 const router = express.Router();
+
+function getKezdDatum(nap) {
+  const napok = {
+    Vasarnap: 0,
+    Hetfo: 1,
+    Kedd: 2,
+    Szerda: 3,
+    Csutortok: 4,
+    Pentek: 5,
+    Szombat: 6,
+  };
+  const date = new Date();
+  const today = date.getUTCDay();
+  const kezdNap = napok[nap];
+  const hatralevoNapok = (kezdNap + 7 - today) % 7 || 7;
+  const kezdDatum = new Date(date);
+  kezdDatum.setUTCDate(date.getUTCDate() + hatralevoNapok);
+
+  return kezdDatum.toISOString().split('T')[0];
+}
 
 router.get('/:id', async (req, res) => {
   try {
@@ -16,11 +37,15 @@ router.get('/:id', async (req, res) => {
     }
     const jaratID = req.params.id;
     const { message } = req.query;
+
+    const [[jarat]] = await findJaratByID(jaratID);
+    // console.log(jarat);
+    const kezdDatum = getKezdDatum(jarat.Nap);
     res.render('foglalasok', {
       foglalasok,
-      jaratID,
+      jarat,
+      kezdDatum,
       message,
-      /* userID: req.session.userID, */
       username: req.session.username,
       roleID: req.session.roleID,
     });

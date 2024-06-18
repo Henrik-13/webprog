@@ -9,7 +9,7 @@ router.get(['/', '/index'], async (req, res) => {
     const [jaratok] = await findAllJaratok();
     res.render('jaratok', {
       jaratok,
-      /* userID: req.session.userID, */ username: req.session.username,
+      username: req.session.username,
       roleID: req.session.roleID,
     });
   } catch (err) {
@@ -20,7 +20,11 @@ router.get(['/', '/index'], async (req, res) => {
 router.post(['/', '/index'], express.urlencoded({ extended: true }), jaratKereses, async (req, res) => {
   try {
     const [filteredJaratok] = await findByParameters(req.body);
-    res.render('jaratok', { jaratok: filteredJaratok });
+    res.render('jaratok', {
+      jaratok: filteredJaratok,
+      username: req.session.username,
+      roleID: req.session.roleID,
+    });
   } catch (err) {
     res.status(500).render('error', { message: `Selection unsuccessful: ${err.message}` });
   }

@@ -6,61 +6,79 @@
 
     <body>
         <%- include('partials/navbar.ejs') %>
+            <div class="container sticky-top">
+                <table class="table" id="jarat-info">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Honnan</th>
+                            <th>Hova</th>
+                            <th>Óra</th>
+                            <th>Jegyár</th>
+                            <th>Vonat típusa</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-light">
+                        <tr>
+                            <td>
+                                <%= jarat.Honnan %>
+                            </td>
+                            <td>
+                                <%= jarat.Hova %>
+                            </td>
+                            <td>
+                                <%= jarat.Ora %>
+                            </td>
+                            <td>
+                                <%= jarat.JegyAr %>
+                            </td>
+                            <td>
+                                <%= jarat.VonatTipus %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <% if (message) { %>
                 <div class="error">
                     <%= message %>
                 </div>
                 <% } %>
                     <% if (foglalasok.length) { %>
-                        <table>
-                            <tr>
-                                <th>Foglalás ID</th>
-                                <th>Foglaló neve</th>
-                                <th>Honnan</th>
-                                <th>Hova</th>
-                                <th>Dátum</th>
-                                <th>Óra</th>
-                                <th>Jegyár</th>
-                                <th>Vonat típusa</th>
-                            </tr>
-                            <% foglalasok.forEach((foglalas)=> { %>
-                                <tr id="base-info" data-foglalas-id="<%= foglalas.FoglalasID %>">
-                                    <td>
-                                        <%= foglalas.FoglalasID %>
-                                    </td>
-                                    <td>
-                                        <%= foglalas.Nev %>
-                                    </td>
-                                    <td>
-                                        <%= foglalas.Honnan %>
-                                    </td>
-                                    <td>
-                                        <%= foglalas.Hova %>
-                                    </td>
-                                    <td>
-                                        <%= foglalas.Datum %>
-                                    </td>
-                                    <td>
-                                        <%= foglalas.Ora %>
-                                    </td>
-                                    <td>
-                                        <%= foglalas.JegyAr %>
-                                    </td>
-                                    <td>
-                                        <%= foglalas.VonatTipus %>
-                                    </td>
-                                    <td>
-                                        <button class="foglalas-torles">Törlés</button>
-                                    </td>
+                        <table class="table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Foglalás ID</th>
+                                    <th>Foglaló neve</th>
+                                    <th>Dátum</th>
                                 </tr>
-                                <% }) %>
+                            </thead>
+                            <tbody class="table-light">
+
+                                <% foglalasok.forEach((foglalas)=> { %>
+                                    <tr id="base-info" data-foglalas-id="<%= foglalas.FoglalasID %>">
+                                        <td>
+                                            <%= foglalas.FoglalasID %>
+                                        </td>
+                                        <td>
+                                            <%= foglalas.Nev %>
+                                        </td>
+                                        <td>
+                                            <%= foglalas.Datum %>
+                                        </td>
+                                        <td>
+                                            <button class="foglalas-torles">Törlés</button>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
                         </table>
                         <% } else { %>
                             <p class="empty">Nincsenek foglalások</p>
                             <% } %>
-                                <form action="/foglalas/<%= jaratID%>" method="POST" id="foglalas-form" class="forms"
-                                    enctype="application/x-www-form-urlencoded">
-                                    Dátum: <input type="date" name="datum" id="datum" required>
+                                <form action="/foglalas/<%= jarat.JaratID%>" method="POST" id="foglalas-form"
+                                    class="forms" enctype="application/x-www-form-urlencoded">
+                                    Dátum: <input type="date" name="datum" id="datum" min="<%=kezdDatum%>" step="7"
+                                        required>
                                     <button type="submit">Foglalás</button>
                                 </form>
                                 <%- include('partials/footer.ejs') %>

@@ -7,35 +7,48 @@
 
     <body>
         <%- include('partials/navbar.ejs') %>
-            <form action="/" method="POST" id="kereses-form" class="forms" enctype="application/x-www-form-urlencoded">
-                Kiindulópont: <input type="text" name="kiindulopont" id="kiindulopont">
-                <br><br>
-                Célpont: <input type="text" name="celpont" id="celpont">
-                <br><br>
-                Minimum ár: <input type="number" min="0" name="min_ar" id="min_ar">
-                <br><br>
-                Maximum ár: <input type="number" min="0" name="max_ar" id="max_ar">
-                <br><br>
-                Nap: <select name="napok" id="napok" required>
-                    <option value="Osszes">Összes</option>
-                    <option value="Hetfo">Hétfő</option>
-                    <option value="Kedd">Kedd</option>
-                    <option value="Szerda">Szerda</option>
-                    <option value="Csutortok">Csütörtök</option>
-                    <option value="Pentek">Péntek</option>
-                    <option value="Szombat">Szombat</option>
-                    <option value="Vasarnap">Vasárnap</option>
-                </select>
-                <br><br>
-                Vonat típusa: <select name="vonattipus" id="vonattipus" required>
-                    <option value="Osszes">Összes</option>
-                    <option value="Gyors">Gyors</option>
-                    <option value="Regionalis">Regionális</option>
-                    <option value="Expressz">Expressz</option>
-                    <option value="Szemely">Személyvonat</option>
-                </select>
-                <br><br>
-                Átszállásos járatok <input type="checkbox" name="atszallas" id="atszallas">
+            <form action="/" method="POST" id="kereses-form" class="forms form-inline"
+                enctype="application/x-www-form-urlencoded">
+                <div class="form-group">
+                    <label for="kiindulopont">Kiindulópont:</label>
+                    <input type="text" name="kiindulopont" id="kiindulopont" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="celpont">Célpont:</label>
+                    <input type="text" name="celpont" id="celpont" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="min_ar">Minimum ár:</label>
+                    <input type="number" min="0" name="min_ar" id="min_ar" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="max_ar">Maximum ár:</label>
+                    <input type="number" min="0" name="max_ar" id="max_ar" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="napok">Nap:</label>
+                    <select name="napok" id="napok" class="form-select" required>
+                        <option value="Osszes">Összes</option>
+                        <option value="Hetfo">Hétfő</option>
+                        <option value="Kedd">Kedd</option>
+                        <option value="Szerda">Szerda</option>
+                        <option value="Csutortok">Csütörtök</option>
+                        <option value="Pentek">Péntek</option>
+                        <option value="Szombat">Szombat</option>
+                        <option value="Vasarnap">Vasárnap</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="vonattipus">Vonat típusa:</label>
+                    <select name="vonattipus" id="vonattipus" class="form-select" required>
+                        <option value="Osszes">Összes</option>
+                        <option value="Gyors">Gyors</option>
+                        <option value="Regionalis">Regionális</option>
+                        <option value="Expressz">Expressz</option>
+                        <option value="Szemely">Személyvonat</option>
+                    </select>
+                </div>
+                Átszállásos járatok <input type="checkbox" name="atszallas" id="atszallas" class="form-check-input">
                 <br><br>
                 <button type="submit">Keresés</button>
             </form>
@@ -43,47 +56,51 @@
                 <a href="/felvezetes" id="felvezetes-button">Új járat felvezetése</a>
                 <% } %>
                     <% if (jaratok.length) { %>
-                        <table id="jaratok-table">
-                            <tr>
-                                <th>Járat ID</th>
-                                <th>Honnan</th>
-                                <th>Hova</th>
-                                <th>Nap</th>
-                                <th>Óra</th>
-                            </tr>
-                            <% jaratok.forEach((jarat)=> { %>
-                                <tr class="base-info" data-id="<%= jarat.JaratID %>">
-                                    <td>
-                                        <%= jarat.JaratID %>
-                                    </td>
-                                    <td>
-                                        <%= jarat.Honnan %>
-                                    </td>
-                                    <td>
-                                        <%= jarat.Hova %>
-                                    </td>
-                                    <td>
-                                        <%= jarat.Nap %>
-                                    </td>
-                                    <td>
-                                        <%= jarat.Ora %>
-                                    </td>
-                                    <td>
-                                        <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
-                                    </td>
-                                    <% if (typeof roleID !=='undefined' && roleID===1) { %>
+                        <table id="jaratok-table" class="table table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Járat ID</th>
+                                    <th>Honnan</th>
+                                    <th>Hova</th>
+                                    <th>Nap</th>
+                                    <th>Óra</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-light">
+                                <% jaratok.forEach((jarat)=> { %>
+                                    <tr class="base-info" data-id="<%= jarat.JaratID %>">
                                         <td>
-                                            <button class="jarat-torles">Törlés</button>
+                                            <%= jarat.JaratID %>
                                         </td>
-                                        <% } %>
-                                </tr>
-                                <tr class="more-details" id="<%= jarat.JaratID %>">
-                                    <td>Jegyár: <%= jarat.JegyAr %>
-                                    </td>
-                                    <td>vonattípus: <%= jarat.VonatTipus %>
-                                    </td>
-                                </tr>
-                                <% }) %>
+                                        <td>
+                                            <%= jarat.Honnan %>
+                                        </td>
+                                        <td>
+                                            <%= jarat.Hova %>
+                                        </td>
+                                        <td>
+                                            <%= jarat.Nap %>
+                                        </td>
+                                        <td>
+                                            <%= jarat.Ora %>
+                                        </td>
+                                        <td>
+                                            <a href="/foglalas/<%= jarat.JaratID%>" id="foglalas-button">Foglalás</a>
+                                        </td>
+                                        <% if (typeof roleID !=='undefined' && roleID===1) { %>
+                                            <td>
+                                                <button class="jarat-torles">Törlés</button>
+                                            </td>
+                                            <% } %>
+                                    </tr>
+                                    <tr class="more-details" id="<%= jarat.JaratID %>">
+                                        <td>Jegyár: <%= jarat.JegyAr %>
+                                        </td>
+                                        <td>vonattípus: <%= jarat.VonatTipus %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
                         </table>
                         <% } else { %>
                             <p class="empty">Nincsenek jaratok</p>

@@ -9,7 +9,13 @@ export default async function validateFoglalas(req, res, next) {
     res.sendStatus(400);
     return;
   }
+  const today = new Date();
   const d2 = new Date(req.body.datum);
+  if (d2 < today) {
+    console.error('Multbeli datumra nem lehet foglalni');
+    res.sendStatus(400);
+    return;
+  }
   const [response] = await findDayByJaratID(req.params.id);
   if (response.Nap !== weekday[d2.getDay()]) {
     console.error('Ervenytelen nap');

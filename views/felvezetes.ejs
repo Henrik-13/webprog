@@ -7,30 +7,43 @@
         <%- include('partials/navbar.ejs') %>
             <form action="/felvezetes" method="POST" id="jaratok-form" class="forms"
                 enctype="application/x-www-form-urlencoded">
-                Honnan: <input type="text" name="honnan" id="honnan" required>
-                <br><br>
-                Hova: <input type="text" name="hova" id="hova" required>
-                <br><br>
-                Nap: <select name="napok" id="napok" required>
-                    <option value="Hetfo">Hétfő</option>
-                    <option value="Kedd">Kedd</option>
-                    <option value="Szerda">Szerda</option>
-                    <option value="Csutortok">Csütörtök</option>
-                    <option value="Pentek">Péntek</option>
-                    <option value="Szombat">Szombat</option>
-                    <option value="Vasarnap">Vasárnap</option>
-                </select>
-                <br><br>
-                Óra: <input type="time" name="ora" id="ora" required>
-                <br><br>
-                Jegy ára: <input type="number" min="0" name="ar" id="ar" required>
-                <br><br>
-                Vonat típusa: <select name="vonattipus" id="vonattipus" required>
-                    <option value="Gyors">Gyors</option>
-                    <option value="Regionalis">Regionális</option>
-                    <option value="Expressz">Expressz</option>
-                    <option value="Szemely">Személyvonat</option>
-                </select>
+                <div class="form-group">
+                    <label class="form-label" for="honnan">Honnan:</label>
+                    <input type="text" name="honnan" id="honnan" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="hova">Hova:</label>
+                    <input type="text" name="hova" id="hova" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="napok">Nap:</label>
+                    <select name="napok" id="napok" class="form-select" required>
+                        <option value="Hetfo">Hétfő</option>
+                        <option value="Kedd">Kedd</option>
+                        <option value="Szerda">Szerda</option>
+                        <option value="Csutortok">Csütörtök</option>
+                        <option value="Pentek">Péntek</option>
+                        <option value="Szombat">Szombat</option>
+                        <option value="Vasarnap">Vasárnap</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="ora">Óra:</label>
+                    <input type="time" name="ora" id="ora" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="ar">Jegy ára:</label>
+                    <input type="number" min="0" name="ar" id="ar" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="vonattipus">Vonat típusa:</label>
+                    <select name="vonattipus" id="vonattipus" class="form-select" required>
+                        <option value="Gyors">Gyors</option>
+                        <option value="Regionalis">Regionális</option>
+                        <option value="Expressz">Expressz</option>
+                        <option value="Szemely">Személyvonat</option>
+                    </select>
+                </div>
                 <br><br>
                 <button type="submit" id="hozzaadas">Hozzáadás</button>
             </form>

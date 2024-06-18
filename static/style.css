@@ -11,38 +11,27 @@ body {
     padding-bottom: 60px;
 }
 
-nav {
-    position: fixed;
-    background: #242526;
-    width: 100%;
-    top: 0;
-    left: 0;
-    height: 60px;
-    z-index: 99;
-}
-
 nav ul {
     display: flex;
     flex-direction: row;
     list-style: none;
-    padding: 0;
-    align-items: center;
-    margin: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-nav a, footer a, #logout {
-    color: #f2f2f2;
-    text-decoration: none;
-    font-size: 18px;
+.nav-link, .navbar-brand {
     font-weight: 500;
     padding: 9px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
     display: flex;
-    align-items: center;
 }
 
-nav a:hover, footer a:hover, #logout:hover {
+.navbar-nav .nav-link, footer .nav-link {
+    font-size: 1.3rem;
+}
+
+nav a:hover, footer a:hover {
     background: #3A3B3C;
 }
 
@@ -96,11 +85,16 @@ input, select {
     transition: background-color 0.3s ease;
 }
 
+table {
+    text-align: center;
+}
+
+
+/*
 table
 {
     margin: 50px;
     margin-bottom: 100px;
-    /* border: 1px solid black; */
     width:70lvw;
 }
 
@@ -126,7 +120,7 @@ th, td:first-child
 {
     text-align: center;
 }
-
+*/
 #jaratok-table a, .foglalas-torles, .jarat-torles, #error-button {
     text-align: center;
     display: inline-block;
@@ -169,4 +163,13 @@ form button:hover, #felvezetes-button:hover, #jaratok-table a:hover, .foglalas-t
 
 #error-page {
     background-color: white;
+}
+
+#jarat-info {
+    padding-top: 10px;
+    margin-top: 60px;
+}
+
+.container {
+    margin-top: 60px;
 }
