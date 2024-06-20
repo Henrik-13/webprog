@@ -16,15 +16,15 @@ try {
   process.exit(1);
 }
 
-// export async function findAllFoglalasok() {
-//   const query = `SELECT F.FoglalasID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
-//     FROM Foglalasok AS F
-//     INNER JOIN Jaratok AS J ON J.JaratID = F.JaratID
-//     INNER JOIN Felhasznalok AS FE ON F.FelhasznaloID = FE.FelhasznaloID;
-//     `;
-//   const [foglalasok] = await pool.query(query);
-//   return foglalasok;
-// }
+export async function findAllFoglalasok() {
+  const query = `SELECT J.JaratID, F.FoglalasID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
+    FROM Foglalasok AS F
+    INNER JOIN Jaratok AS J ON J.JaratID = F.JaratID
+    INNER JOIN Felhasznalok AS FE ON F.FelhasznaloID = FE.FelhasznaloID;
+    `;
+  const foglalasok = await pool.query(query);
+  return foglalasok;
+}
 
 export async function findFoglalasByJaratID(id) {
   const query = `SELECT F.FoglalasID, J.JaratID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
@@ -37,7 +37,7 @@ export async function findFoglalasByJaratID(id) {
   return foglalasok;
 }
 
-export async function findFoglalasByFelhasznalo(jaratid, nev) {
+export async function findFoglalasByFelhasznaloAndJarat(jaratid, nev) {
   const query = `SELECT F.FoglalasID, J.JaratID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
     FROM Foglalasok AS F
     INNER JOIN Jaratok AS J ON J.JaratID = F.JaratID
@@ -64,4 +64,15 @@ export async function findFelhasznaloIDByFoglalasID(foglalasid) {
   const query = 'SELECT FelhasznaloID FROM Foglalasok WHERE FoglalasID = ?';
   const res = await pool.query(query, foglalasid);
   return res[0][0];
+}
+
+export async function findFoglalasokByFelhasznalo(nev) {
+  const query = `SELECT J.JaratID, F.FoglalasID, FE.Nev, J.Honnan, J.Hova, F.Datum, J.Ora, J.JegyAr, J.VonatTipus
+    FROM Foglalasok AS F
+    INNER JOIN Jaratok AS J ON J.JaratID = F.JaratID
+    INNER JOIN Felhasznalok AS FE ON F.FelhasznaloID = FE.FelhasznaloID
+    WHERE FE.Nev = ?;
+    `;
+  const foglalasok = await pool.query(query, nev);
+  return foglalasok;
 }

@@ -21,15 +21,17 @@ router.get(['/', '/index'], async (req, res) => {
 
 router.post(['/', '/index'], express.urlencoded({ extended: true }), jaratKereses, async (req, res) => {
   try {
+    let atszallasosJaratok;
     if (req.body.atszallas) {
-      const [atszallasosJaratok] = await findAtszallasosJaratok(req.body);
-      if (atszallasosJaratok) {
-        console.log(atszallasosJaratok);
-      }
+      [atszallasosJaratok] = await findAtszallasosJaratok(req.body);
+      // if (atszallasosJaratok) {
+      //   console.log(atszallasosJaratok);
+      // }
     }
     const [filteredJaratok] = await findByParameters(req.body);
     res.render('jaratok', {
       jaratok: filteredJaratok,
+      atszallasosJaratok,
       username: req.session.username,
       roleID: req.session.roleID,
     });

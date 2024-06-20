@@ -10,6 +10,7 @@ import apiRouter from './api/api-router.js';
 import loginRoutes from './routes/login.js';
 import registerRoutes from './routes/register.js';
 import logoutRoutes from './routes/logout.js';
+import osszesFoglalasRoutes from './routes/osszes-foglalas.js';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api', apiRouter);
 app.use('/', jaratRoutes);
 app.use('/foglalas', foglalasRoutes);
 app.use('/felvezetes', felvezetesRoutes);
+app.use('/osszes-foglalas', osszesFoglalasRoutes);
 app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);
 app.use('/logout', logoutRoutes);

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/header.ejs', { title: 'Összes foglalás' }) %>
+    <script type="module" src="/delete-foglalas.js"></script>
+    <script type="module" src="/show-details.js"></script>
+
+    <body>
+        <%- include('partials/navbar.ejs') %>
+            <% if (foglalasok.length) { %>
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Foglalás ID</th>
+                            <th>Név</th>
+                            <th>Honnan</th>
+                            <th>Hova</th>
+                            <th>Dátum</th>
+                            <th>Óra</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-light">
+                        <% foglalasok.forEach((foglalas)=> { %>
+                            <tr class="base-info" data-id="<%= foglalas.JaratID %>"
+                                data-foglalas-id="<%= foglalas.FoglalasID %>">
+                                <td>
+                                    <%= foglalas.FoglalasID %>
+                                </td>
+                                <td>
+                                    <%= foglalas.Nev %>
+                                </td>
+                                <td>
+                                    <%= foglalas.Honnan %>
+                                </td>
+                                <td>
+                                    <%= foglalas.Hova %>
+                                </td>
+                                <td>
+                                    <%= foglalas.Datum %>
+                                </td>
+                                <td>
+                                    <%= foglalas.Ora %>
+                                </td>
+                                <td>
+                                    <button class="foglalas-torles">Törlés</button>
+                                </td>
+                            </tr>
+                            <tr class="more-details" id="<%= foglalas.JaratID %>">
+                                <td>Jegyár: <%= foglalas.JegyAr %>
+                                </td>
+                                <td>vonattípus: <%= foglalas.VonatTipus %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <p class="empty">Nincsenek foglalások</p>
+                    <% } %>
+                        <%- include('partials/footer.ejs') %>
+    </body>
+
+</html>

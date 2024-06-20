@@ -61,19 +61,6 @@ window.onload = () => {
   });
 
   const rows = document.querySelectorAll('.base-info');
-  rows.forEach((row) => {
-    row.addEventListener('click', () => {
-      const jaratID = row.getAttribute('data-id');
-      fetch(`/api/jaratDetails/${jaratID}`)
-        // .then((response) => response.json())
-        .then(() => {
-          document.getElementById(jaratID).style.display = 'block';
-        })
-        .catch((error) => {
-          console.error('Error fetching jarat info: ', error);
-        });
-    });
-  });
 
   const filterJaratok = () => {
     const kiindulopont = document.getElementById('kiindulopont').value.toLowerCase();
@@ -103,5 +90,4 @@ window.onload = () => {
 
   const filterForm = document.getElementById('kereses-form');
   filterForm.addEventListener('input', filterJaratok);
-  // const table = document.getElementById('jaratok-table');
 };

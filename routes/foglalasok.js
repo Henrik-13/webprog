@@ -1,5 +1,5 @@
 import express from 'express';
-import { findFoglalasByFelhasznalo, findFoglalasByJaratID } from '../db/foglalasok.js';
+import { findFoglalasByFelhasznaloAndJarat, findFoglalasByJaratID } from '../db/foglalasok.js';
 import jaratFoglalas from '../middleware/foglalaslogger.js';
 import validateFoglalas from '../middleware/validate-foglalas.js';
 import notLoggedIn from '../middleware/not-logged-in.js';
@@ -33,13 +33,12 @@ router.get('/:id', async (req, res) => {
     if (req.session.roleID === 1) {
       [foglalasok] = await findFoglalasByJaratID(req.params.id);
     } else {
-      [foglalasok] = await findFoglalasByFelhasznalo(req.params.id, req.session.username);
+      [foglalasok] = await findFoglalasByFelhasznaloAndJarat(req.params.id, req.session.username);
     }
     const jaratID = req.params.id;
     const { message } = req.query;
 
     const [[jarat]] = await findJaratByID(jaratID);
-    // console.log(jarat);
     const kezdDatum = getKezdDatum(jarat.Nap);
     res.render('foglalasok', {
       foglalasok,
