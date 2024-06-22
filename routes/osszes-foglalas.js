@@ -10,8 +10,10 @@ router.get('/', async (req, res) => {
   try {
     let foglalasok;
     if (req.session.roleID === 1) {
+      // admin eseten osszes foglalas
       [foglalasok] = await findAllFoglalasok();
     } else {
+      // felhasznalo eseten sajat foglalasok
       [foglalasok] = await findFoglalasokByFelhasznalo(req.session.username);
     }
     console.log(foglalasok);

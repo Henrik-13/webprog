@@ -36,27 +36,28 @@ function checkVonattipus(vonattipus, tipus) {
   return true;
 }
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
   const deleteButtons = document.querySelectorAll('.jarat-torles');
   deleteButtons.forEach((button) => {
     button.addEventListener('click', async () => {
-      // const ans = confirm('Biztosan szeretne torolni a jaratot?');
-      // if (ans) {
-      const row = button.closest('tr');
-      const jaratID = row.getAttribute('data-id');
-      try {
-        const response = await fetch(`/api/${jaratID}`, { method: 'DELETE' });
-        if (response.ok) {
-          row.remove();
-          alert('Jarat sikeresen torolve');
-        } else {
+      // eslint-disable-next-line no-restricted-globals
+      const ans = confirm('Biztosan szeretne torolni a jaratot?');
+      if (ans) {
+        const row = button.closest('tr');
+        const jaratID = row.getAttribute('data-id');
+        try {
+          const response = await fetch(`/api/${jaratID}`, { method: 'DELETE' });
+          if (response.ok) {
+            row.remove();
+            alert('Jarat sikeresen torolve');
+          } else {
+            alert('Hiba a jarat torlesekor');
+          }
+        } catch (error) {
+          console.error('Error:', error);
           alert('Hiba a jarat torlesekor');
         }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Hiba a jarat torlesekor');
       }
-      // }
     });
   });
 
@@ -90,4 +91,4 @@ window.onload = () => {
 
   const filterForm = document.getElementById('kereses-form');
   filterForm.addEventListener('input', filterJaratok);
-};
+});

@@ -20,10 +20,12 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'views'));
 app.use(morgan('tiny'));
 
+// session beallitasa
 app.use(session({ secret: '142e6ecf42884f03', resave: false, saveUninitialized: true }));
 
 app.use('/api', apiRouter);
 
+// sajat routerek
 app.use('/', jaratRoutes);
 app.use('/foglalas', foglalasRoutes);
 app.use('/felvezetes', felvezetesRoutes);

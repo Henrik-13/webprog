@@ -16,10 +16,10 @@ router.get('/', (req, res) => {
 router.post(
   '/',
   express.urlencoded({ extended: true }),
-  notLoggedIn,
-  rejectNotAdmin,
-  validateJarat,
-  jaratLogger,
+  notLoggedIn, // bejelentkezes szukseges
+  rejectNotAdmin, // csak admin adhat hozza jaratot
+  validateJarat, // jarat validalasa
+  jaratLogger, // jarat beszurasa az adatbazisba
   (req, res) => {
     res.redirect('/');
   },

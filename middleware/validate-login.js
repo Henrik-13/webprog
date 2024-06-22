@@ -6,7 +6,6 @@ export default async function validateLogin(req, res, next) {
     const { username, password } = req.body;
     if (!username || !password) {
       res.status(400).render('login', {
-        // username: req.session.username,
         loginErrMess: 'Hiányzó felhasználónév vegy jelszó',
       });
       return;

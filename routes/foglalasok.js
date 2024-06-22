@@ -31,15 +31,17 @@ router.get('/:id', async (req, res) => {
   try {
     let foglalasok;
     if (req.session.roleID === 1) {
+      // admin eseten az osszes foglalas
       [foglalasok] = await findFoglalasByJaratID(req.params.id);
     } else {
+      // felhasznalo eseten csak a sajat foglalasai jelennek meg
       [foglalasok] = await findFoglalasByFelhasznaloAndJarat(req.params.id, req.session.username);
     }
     const jaratID = req.params.id;
     const { message } = req.query;
 
     const [[jarat]] = await findJaratByID(jaratID);
-    const kezdDatum = getKezdDatum(jarat.Nap);
+    const kezdDatum = getKezdDatum(jarat.Nap); // megkeressuk a legkozelebbi napot, amikor megy a jarat
     res.render('foglalasok', {
       foglalasok,
       jarat,
@@ -56,9 +58,9 @@ router.get('/:id', async (req, res) => {
 router.post(
   '/:id',
   express.urlencoded({ extended: true }),
-  notLoggedIn,
-  validateFoglalas,
-  jaratFoglalas,
+  notLoggedIn, // bejelentkezes szukseges
+  validateFoglalas, // foglalas validalasa
+  jaratFoglalas, // foglalas beszurasa
   (req, res) => {
     try {
       res.redirect(`/foglalas/${req.params.id}?message=Foglalás sikeres`);

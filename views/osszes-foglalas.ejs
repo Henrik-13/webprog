@@ -2,8 +2,6 @@
 <html lang="en">
 
 <%- include('partials/header.ejs', { title: 'Összes foglalás' }) %>
-    <script type="module" src="/delete-foglalas.js"></script>
-    <script type="module" src="/show-details.js"></script>
 
     <body>
         <%- include('partials/navbar.ejs') %>
@@ -58,6 +56,9 @@
                     <p class="empty">Nincsenek foglalások</p>
                     <% } %>
                         <%- include('partials/footer.ejs') %>
+
+                            <script type="module" src="/delete-foglalas.js"></script>
+                            <script type="module" src="/show-details.js"></script>
     </body>
 
 </html>

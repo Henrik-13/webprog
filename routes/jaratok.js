@@ -24,9 +24,6 @@ router.post(['/', '/index'], express.urlencoded({ extended: true }), jaratKerese
     let atszallasosJaratok;
     if (req.body.atszallas) {
       [atszallasosJaratok] = await findAtszallasosJaratok(req.body);
-      // if (atszallasosJaratok) {
-      //   console.log(atszallasosJaratok);
-      // }
     }
     const [filteredJaratok] = await findByParameters(req.body);
     res.render('jaratok', {

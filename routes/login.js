@@ -5,6 +5,7 @@ import alreadyLoggedIn from '../middleware/already-logged-in.js';
 
 const router = express.Router();
 
+// ha mar be van jelentkezve, akkor ne engedje ujra
 router.use('/', alreadyLoggedIn);
 
 router.get('/', (req, res) => {
@@ -12,7 +13,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', express.urlencoded({ extended: true }), validateLogin, setSession, (req, res) => {
-  // console.log(req.session);
   res.redirect('/');
 });
 

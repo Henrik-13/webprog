@@ -1,4 +1,4 @@
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
   const deleteButtons = document.querySelectorAll('.foglalas-torles');
   deleteButtons.forEach((button) => {
     button.addEventListener('click', async () => {
@@ -19,4 +19,4 @@ window.onload = () => {
       }
     });
   });
-};
+});

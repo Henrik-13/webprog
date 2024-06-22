@@ -7,7 +7,6 @@ export async function deleteFoglalas(req, res) {
     const result1 = await findFelhasznaloIDByFoglalasID(foglalasID);
     const result2 = await findUserByUsername(req.session.username);
     const user = result2[0][0];
-    // console.log(result1.FelhasznaloID, req.session.userID);
     if (user.FelhasznaloID === result1.FelhasznaloID || req.session.roleID === 1) {
       const result = await dbDeleteFoglalas(foglalasID);
       if (result.length > 0) {

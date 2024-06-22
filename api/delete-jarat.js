@@ -2,7 +2,6 @@ import { deleteJarat as dbDeleteJarat } from '../db/jaratok.js';
 
 export async function deleteJarat(req, res) {
   const { jaratID } = req.params;
-  // console.log(jaratID);
   try {
     if (req.session.roleID === 1) {
       const result = await dbDeleteJarat(jaratID);

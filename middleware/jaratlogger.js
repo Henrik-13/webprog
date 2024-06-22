@@ -2,7 +2,6 @@ import { insertJarat } from '../db/jaratok.js';
 
 export default async function jaratLogger(req, res, next) {
   try {
-    // console.log(req.body);
     const [header] = await insertJarat(req.body);
     console.log(`Inserted jarat. Affected rows: ${header.affectedRows}`);
     next();

@@ -6,6 +6,7 @@ import alreadyLoggedIn from '../middleware/already-logged-in.js';
 
 const router = express.Router();
 
+// ha mar be van jelentkezve, akkor ne engedje regisztralni
 router.use('/', alreadyLoggedIn);
 
 router.get('/', (req, res) => {

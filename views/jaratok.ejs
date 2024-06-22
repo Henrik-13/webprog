@@ -3,9 +3,6 @@
 
 <%- include('partials/header.ejs', { title: 'Járatok' }) %>
 
-    <script type="module" src="/jaratok.js"></script>
-    <script type="module" src="/show-details.js"></script>
-
     <body>
         <%- include('partials/navbar.ejs') %>
             <form action="/" method="POST" id="kereses-form"
@@ -106,7 +103,7 @@
                     </tbody>
                 </table>
                 <% } else { %>
-                    <p class="empty">Nincsenek jaratok</p>
+                    <p class="empty">Nincsenek direkt járatok</p>
                     <% } %>
 
                         <% if ( typeof atszallasosJaratok !=='undefined' && atszallasosJaratok.length) { %>
@@ -143,6 +140,9 @@
                             <% } %>
 
                                 <%- include('partials/footer.ejs') %>
+
+                                    <script src="/show-details.js"></script>
+                                    <script src="/jaratok.js"></script>
     </body>
 
 </html>

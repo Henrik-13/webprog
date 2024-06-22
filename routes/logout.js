@@ -4,6 +4,7 @@ import destroySession from '../middleware/destroy-session.js';
 
 const router = express.Router();
 
+// ha nincs bejelentkezve akkor nem lehet kijelentkezni
 router.use('/', notLoggedIn);
 
 router.post('/', destroySession, (req, res) => {

@@ -7,10 +7,13 @@ import { deleteJarat } from './delete-jarat.js';
 
 const router = express.Router();
 
+// jarat reszleteinek megjelenitese
 router.get('/jaratDetails/:id', showDetails);
 
+// foglalasok torlese
 router.delete('/foglalas/:foglalasID', notLoggedIn, deleteFoglalas);
 
+// jaratok torlese
 router.delete('/:jaratID', notLoggedIn, rejectNotAdmin, deleteJarat);
 
 export default router;
