@@ -2,8 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteButtons = document.querySelectorAll('.foglalas-torles');
   deleteButtons.forEach((button) => {
     button.addEventListener('click', async () => {
-      // eslint-disable-next-line no-restricted-globals
-      const ans = confirm('Biztosan szeretne torolni a foglalast?');
+      const ans = window.confirm('Biztosan szeretne torolni a foglalast?');
       if (ans) {
         const row = button.closest('tr');
         const foglalasID = row.getAttribute('data-foglalas-id');

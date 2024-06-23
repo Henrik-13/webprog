@@ -40,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteButtons = document.querySelectorAll('.jarat-torles');
   deleteButtons.forEach((button) => {
     button.addEventListener('click', async () => {
-      // eslint-disable-next-line no-restricted-globals
-      const ans = confirm('Biztosan szeretne torolni a jaratot?');
+      const ans = window.confirm('Biztosan szeretne torolni a jaratot?');
       if (ans) {
         const row = button.closest('tr');
         const jaratID = row.getAttribute('data-id');
