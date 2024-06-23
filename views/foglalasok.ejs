@@ -9,6 +9,7 @@
                 <table class="table" id="jarat-info">
                     <thead class="table-dark">
                         <tr>
+                            <th>Járat ID</th>
                             <th>Honnan</th>
                             <th>Hova</th>
                             <th>Óra</th>
@@ -17,23 +18,28 @@
                         </tr>
                     </thead>
                     <tbody class="table-light">
-                        <tr>
-                            <td>
-                                <%= jarat.Honnan %>
-                            </td>
-                            <td>
-                                <%= jarat.Hova %>
-                            </td>
-                            <td>
-                                <%= jarat.Ora %>
-                            </td>
-                            <td>
-                                <%= jarat.JegyAr %>
-                            </td>
-                            <td>
-                                <%= jarat.VonatTipus %>
-                            </td>
-                        </tr>
+                        <% jaratok.forEach((jarat)=> { %>
+                            <tr>
+                                <td>
+                                    <%= jarat.JaratID %>
+                                </td>
+                                <td>
+                                    <%= jarat.Honnan %>
+                                </td>
+                                <td>
+                                    <%= jarat.Hova %>
+                                </td>
+                                <td>
+                                    <%= jarat.Ora %>
+                                </td>
+                                <td>
+                                    <%= jarat.JegyAr %>
+                                </td>
+                                <td>
+                                    <%= jarat.VonatTipus %>
+                                </td>
+                            </tr>
+                            <% }) %>
                     </tbody>
                 </table>
             </div>
@@ -46,6 +52,7 @@
                         <table class="table">
                             <thead class="table-dark">
                                 <tr>
+                                    <th>Járat ID</th>
                                     <th>Foglalás ID</th>
                                     <th>Foglaló neve</th>
                                     <th>Dátum</th>
@@ -55,6 +62,9 @@
 
                                 <% foglalasok.forEach((foglalas)=> { %>
                                     <tr id="base-info" data-foglalas-id="<%= foglalas.FoglalasID %>">
+                                        <td>
+                                            <%= foglalas.JaratID %>
+                                        </td>
                                         <td>
                                             <%= foglalas.FoglalasID %>
                                         </td>
@@ -74,7 +84,7 @@
                         <% } else { %>
                             <p class="empty">Nincsenek foglalások</p>
                             <% } %>
-                                <form action="/foglalas/<%= jarat.JaratID%>" method="POST" id="foglalas-form"
+                                <form action=<%=action %> method="POST" id="foglalas-form"
                                     class="bg-light align-items-center p-4" enctype="application/x-www-form-urlencoded">
                                     <div class="row mb-2">
                                         Dátum: <input type="date" name="datum" id="datum" min="<%=kezdDatum%>" step="7"

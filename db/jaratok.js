@@ -30,7 +30,6 @@ export async function findJaratByID(id) {
 }
 
 export async function findByParameters(jarat) {
-  // console.log(jarat);
   let query = 'SELECT * FROM Jaratok WHERE 1 = 1';
   const params = [];
   if (jarat.kiindulopont) {
@@ -92,24 +91,37 @@ export async function findAtszallasosJaratok(jarat) {
   if (!jarat.kiindulopont || !jarat.celpont || !jarat.napok) {
     return [];
   }
-  // console.log(jarat);
   const params = [];
-  let query = `
-    SELECT J1.Honnan, J1.Hova Megallo, J2.Hova, J1.Nap
+  let query1 = `
+    SELECT J1.JaratID, J2.JaratID JaratID2, J1.Honnan, J1.Hova Megallo, J2.Hova, J1.Nap, SUM(J1.JegyAr + J2.JegyAr) AS JegyekAra
     FROM Jaratok J1 JOIN Jaratok J2 ON J1.Hova = J2.Honnan
-    WHERE J1.Hova != J2.Hova AND J1.Honnan != J2.Hova AND J1.Nap = J2.Nap`;
-  query += ' AND J1.Honnan LIKE ?';
+    WHERE J1.Honnan != J2.Hova AND J1.Nap = J2.Nap`;
+  let query2 = `
+    SELECT J1.JaratID, J2.JaratID JaratID2, J3.JaratID JaratID3, J1.Honnan, J1.Hova Megallo, J2.Hova Megallo2, J3.Hova, J1.Nap, SUM(J1.JegyAr + J2.JegyAr + J3.JegyAr) AS JegyekAra
+    FROM Jaratok J1 JOIN Jaratok J2 ON J1.Hova = J2.Honnan
+    JOIN Jaratok J3 ON J2.Hova = J3.Honnan
+    WHERE J1.Honnan != J2.Hova AND J1.Honnan != J3.Hova AND J1.Nap = J2.Nap AND J2.Nap = J3.Nap`;
+  query1 += ' AND J1.Honnan LIKE ?';
+  query2 += ' AND J1.Honnan LIKE ?';
   params.push(`${jarat.kiindulopont}%`);
-  query += ' AND J2.Hova LIKE ?';
+  query1 += ' AND J2.Hova LIKE ?';
+  query2 += ' AND J3.Hova LIKE ?';
   params.push(`${jarat.celpont}%`);
   if (jarat.napok !== 'Osszes') {
-    query += ' AND Nap = ?';
+    query1 += ' AND J1.Nap = ?';
+    query2 += ' AND J1.Nap = ?';
     params.push(jarat.napok);
   }
   if (jarat.vonattipus !== 'Osszes') {
-    query += ' AND VonatTipus = ?';
+    query1 += ' AND J1.VonatTipus = ?';
+    query2 += ' AND J1.VonatTipus = ?';
     params.push(jarat.vonattipus);
   }
-  const res = await pool.query(query, params);
-  return res;
+
+  query1 += ' GROUP BY J1.JaratID, J2.JaratID, J1.Honnan, J1.Hova, J2.Hova, J1.Nap';
+  query2 += ' GROUP BY J1.JaratID, J2.JaratID, J3.JaratID, J1.Honnan, J1.Hova, J2.Hova, J3.Hova, J1.Nap';
+
+  const [res1] = await pool.query(query1, params);
+  const [res2] = await pool.query(query2, params);
+  return [...res1, ...res2];
 }

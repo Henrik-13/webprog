@@ -1,71 +1,57 @@
 import express from 'express';
-import { findFoglalasByFelhasznaloAndJarat, findFoglalasByJaratID } from '../db/foglalasok.js';
 import jaratFoglalas from '../middleware/foglalaslogger.js';
 import validateFoglalas from '../middleware/validate-foglalas.js';
 import notLoggedIn from '../middleware/not-logged-in.js';
-import { findJaratByID } from '../db/jaratok.js';
+import getKezdDatum from '../middleware/get-kezd-datum.js';
+import getFoglalasok from '../middleware/get-foglalasok.js';
 
 const router = express.Router();
 
-function getKezdDatum(nap) {
-  const napok = {
-    Vasarnap: 0,
-    Hetfo: 1,
-    Kedd: 2,
-    Szerda: 3,
-    Csutortok: 4,
-    Pentek: 5,
-    Szombat: 6,
-  };
-  const date = new Date();
-  const today = date.getUTCDay();
-  const kezdNap = napok[nap];
-  const hatralevoNapok = (kezdNap + 7 - today) % 7 || 7;
-  const kezdDatum = new Date(date);
-  kezdDatum.setUTCDate(date.getUTCDate() + hatralevoNapok);
-
-  return kezdDatum.toISOString().split('T')[0];
+function getURL(IDs) {
+  const { id, id2, id3 } = IDs;
+  let url = '/foglalas';
+  if (id) url += `/${id}`;
+  if (id2) url += `/${id2}`;
+  if (id3) url += `/${id3}`;
+  return url;
 }
 
-router.get('/:id', async (req, res) => {
+router.get('/:id/:id2?/:id3?', getKezdDatum, getFoglalasok, (req, res) => {
   try {
-    let foglalasok;
-    if (req.session.roleID === 1) {
-      // admin eseten az osszes foglalas
-      [foglalasok] = await findFoglalasByJaratID(req.params.id);
-    } else {
-      // felhasznalo eseten csak a sajat foglalasai jelennek meg
-      [foglalasok] = await findFoglalasByFelhasznaloAndJarat(req.params.id, req.session.username);
-    }
-    const jaratID = req.params.id;
     const { message } = req.query;
+    const { jaratok } = req;
+    const { kezdDatum } = req;
+    const { foglalasok } = req;
+    const action = getURL(req.params, req.jaratok);
 
-    const [[jarat]] = await findJaratByID(jaratID);
-    const kezdDatum = getKezdDatum(jarat.Nap); // megkeressuk a legkozelebbi napot, amikor megy a jarat
     res.render('foglalasok', {
       foglalasok,
-      jarat,
+      jaratok,
       kezdDatum,
       message,
+      action,
       username: req.session.username,
       roleID: req.session.roleID,
     });
   } catch (err) {
-    res.status(500).render('error', { title: '500', message: `Selection unsuccessful: ${err.message}` });
+    res
+      .status(500)
+      .render('error', { title: '500 Internal Server Error', message: `Selection unsuccessful: ${err.message}` });
   }
 });
 
 router.post(
-  '/:id',
+  '/:id/:id2?/:id3?',
   express.urlencoded({ extended: true }),
   notLoggedIn, // bejelentkezes szukseges
   validateFoglalas, // foglalas validalasa
   jaratFoglalas, // foglalas beszurasa
   (req, res) => {
+    const url = getURL(req.params);
     try {
-      res.redirect(`/foglalas/${req.params.id}?message=Foglalás sikeres`);
+      res.redirect(`${url}?message=Foglalás sikeres`);
     } catch (err) {
-      res.redirect(`/foglalas/${req.params.id}?message=Hiba történt a foglalás során`);
+      res.redirect(`${url}?message=Hiba történt a foglalás során`);
     }
   },
 );

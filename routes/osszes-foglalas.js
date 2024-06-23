@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
       // felhasznalo eseten sajat foglalasok
       [foglalasok] = await findFoglalasokByFelhasznalo(req.session.username);
     }
-    console.log(foglalasok);
     res.render('osszes-foglalas', {
       foglalasok,
       username: req.session.username,

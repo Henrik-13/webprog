@@ -89,7 +89,7 @@ table {
     text-align: center;
 }
 
-#jaratok-table a, .foglalas-torles, .jarat-torles, #error-button {
+#jaratok-table a, #atszallas-table a, .foglalas-torles, .jarat-torles, #error-button {
     text-align: center;
     display: inline-block;
     padding: 5px 10px;
@@ -111,13 +111,17 @@ table {
     transition: background-color 0.3s ease;
 }
 
-form button:hover, #felvezetes-button:hover, #jaratok-table a:hover, .foglalas-torles:hover, .jarat-torles:hover {
+form button:hover, #felvezetes-button:hover, #jaratok-table a:hover, #atszallas-table a:hover, .foglalas-torles:hover, .jarat-torles:hover {
     background-color: #3A3B3C;
 }
 
 .empty, .error {
     margin-top: 50px;
     font-size: 30px;
+    background-color: white;
+}
+
+.cim {
     background-color: white;
 }
 
