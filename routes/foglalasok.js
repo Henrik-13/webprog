@@ -18,11 +18,11 @@ function getURL(IDs) {
 
 router.get('/:id/:id2?/:id3?', getKezdDatum, getFoglalasok, (req, res) => {
   try {
-    const { message } = req.query;
-    const { jaratok } = req;
-    const { kezdDatum } = req;
-    const { foglalasok } = req;
-    const action = getURL(req.params, req.jaratok);
+    const { message } = req.query; // torles utani uzenet
+    const { jaratok } = req; // jaratok amire eppen foglalunk
+    const { kezdDatum } = req; // elso datum amire lehet foglalni
+    const { foglalasok } = req; // mar meglevo foglalasok
+    const action = getURL(req.params, req.jaratok); // url amire kuldjuk a form valaszat
 
     res.render('foglalasok', {
       foglalasok,

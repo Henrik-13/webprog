@@ -22,6 +22,7 @@ router.get(['/', '/index'], async (req, res) => {
 router.post(['/', '/index'], express.urlencoded({ extended: true }), jaratKereses, async (req, res) => {
   try {
     let atszallasosJaratok;
+    // atszallasos jaratok megkeresese
     if (req.body.atszallas) {
       atszallasosJaratok = await findAtszallasosJaratok(req.body);
     }

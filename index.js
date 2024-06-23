@@ -16,6 +16,7 @@ const app = express();
 
 app.use(express.static(path.join(process.cwd(), 'static')));
 
+// sablonmotor beallitasa
 app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'views'));
 app.use(morgan('tiny'));
