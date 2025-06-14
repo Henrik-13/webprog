@@ -7,7 +7,7 @@ This repository contains the lab assignments for the Web Programming course. The
 
 1. Clone the repository:
     ```sh
-    git clone https://gitlab.com/bbte-mmi/webprog/labs/2024/bhim2208.git
+    git clone https://github.com/Henrik-13/TrainCompanyWebApp.git
     cd bhim2208
     ```
 
